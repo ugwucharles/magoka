@@ -86,6 +86,9 @@ import {
 import {
   M as le
 } from "./map-pin-ChG4yLkU.js";
+import {
+  S as me
+} from "./search-BFN4Wc19.js";
 /**
  * @license lucide-react v0.453.0 - ISC
  *
@@ -378,6 +381,16 @@ const we = ({
                 className: "h-10"
               })
             })]
+          }), e.jsx("div", {
+            className: "hidden md:flex flex-1 justify-center",
+            children: e.jsx(a, {
+              variant: "ghost",
+              size: "sm",
+              className: "text-gray-600 hover:text-gray-900",
+              children: e.jsx(me, {
+                className: "w-5 h-5"
+              })
+            })
           }), e.jsxs("div", {
             className: "flex items-center space-x-3",
             children: [e.jsxs(a, {
