@@ -1807,6 +1807,7 @@ function Kt() {
                   children: "Popular"
                 })
               }), e.jsx("li", {
+                style: { marginBottom: "10px" },
                 children: e.jsx("a", {
                   href: "/",
                   className: "hover:text-white transition-colors duration-200",
@@ -1839,6 +1840,7 @@ function Kt() {
                   children: "Delivery Info"
                 })
               }), e.jsx("li", {
+                style: { marginBottom: "10px" },
                 children: e.jsx("a", {
                   href: "/",
                   className: "hover:text-white transition-colors duration-200",

@@ -1705,7 +1705,7 @@ function Or({
             n(p.target.value), m(true);
           },
           onFocus: () => m(true),
-          className: "w-full pl-10 pr-10 py-2.5 border-2 rounded-lg focus:outline-none transition-colors",
+          className: "w-full pl-10 pr-10 py-2.5 border rounded-full focus:outline-none transition-colors",
           style: {
             borderColor: d ? h : "rgba(0,0,0,0.5)"
           }

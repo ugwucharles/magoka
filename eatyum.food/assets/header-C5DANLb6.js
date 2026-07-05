@@ -462,7 +462,7 @@ const we = ({
             })]
           })]
         }), (t == null ? void 0 : t.selectedOutlet) && e.jsx("div", {
-          className: "py-3 border-b border-gray-100",
+          className: "py-3 border-b border-gray-100 md:hidden",
           children: e.jsx(q, {
             outletId: t.selectedOutlet.id
           })
