@@ -11,6 +11,15 @@ const ensureDir = (dir) => {
 const loadJson = (filename, defaultVal) => {
     ensureDir(DATA_DIR);
     const filePath = path.join(DATA_DIR, filename);
+    // In Vercel serverless, also check /tmp for recent writes
+    const tmpPath = path.join('/tmp', filename);
+    if (fs.existsSync(tmpPath)) {
+        try {
+            return JSON.parse(fs.readFileSync(tmpPath, 'utf8'));
+        } catch (e) {
+            console.error(`Error reading ${filename} from /tmp:`, e);
+        }
+    }
     if (!fs.existsSync(filePath)) {
         fs.writeFileSync(filePath, JSON.stringify(defaultVal, null, 2));
         return defaultVal;
@@ -25,7 +34,18 @@ const loadJson = (filename, defaultVal) => {
 
 const saveJson = (filename, data) => {
     ensureDir(DATA_DIR);
-    fs.writeFileSync(path.join(DATA_DIR, filename), JSON.stringify(data, null, 2));
+    const filePath = path.join(DATA_DIR, filename);
+    // In Vercel serverless environment, use /tmp for writable storage
+    const tmpPath = path.join('/tmp', filename);
+    try {
+        fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
+        // Also write to /tmp for serverless compatibility
+        fs.writeFileSync(tmpPath, JSON.stringify(data, null, 2));
+    } catch (e) {
+        console.error(`Error writing ${filename}:`, e);
+        // Fallback to /tmp only
+        fs.writeFileSync(tmpPath, JSON.stringify(data, null, 2));
+    }
 };
 
 const slugify = (name) =>
