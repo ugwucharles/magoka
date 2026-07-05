@@ -123,7 +123,7 @@ const Ge = me("Circle", [
   })(), I = {
     backgroundColor: y,
     color: $(y)
-  }, o = (A == null ? void 0 : A.name) || "EatYum";
+  }, o = (A == null ? void 0 : A.name) || "magoka";
   E.useEffect(() => {
     O && (() => __async(null, null, function* () {
       let l = new URLSearchParams(window.location.search).get("ref");
@@ -166,6 +166,7 @@ const Ge = me("Circle", [
     email: "",
     phone: "",
     fullName: "",
+    password: "",
     referralCode: ""
   }), [V, _] = E.useState(null), [X, z] = E.useState({
     registerOtp: "",
@@ -177,6 +178,7 @@ const Ge = me("Circle", [
       email: "",
       phone: "",
       fullName: "",
+      password: "",
       referralCode: ""
     }), _(null), z({
       registerOtp: "",
@@ -187,10 +189,10 @@ const Ge = me("Circle", [
     O || c();
   }, [O]);
   const a = () => __async(null, null, function* () {
-    if (!G.trim()) {
+    if (!G.trim() || !h.password.trim()) {
       e({
         title: "Error",
-        description: "Please enter your email or phone number",
+        description: "Please enter your email and password",
         variant: "destructive"
       });
       return;
@@ -203,10 +205,11 @@ const Ge = me("Circle", [
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          emailOrPhone: i
+          emailOrPhone: i,
+          password: h.password
         })
       }), u = yield l.json();
-      l.ok ? (oe(s ? "email" : "phone"), N("otp-login"), e({
+      l.ok ? u.token && u.user ? w(u.token, u.user, "Login successful!") : (oe(s ? "email" : "phone"), N("otp-login"), e({
         title: "Success",
         description: `Verification code sent to ${s ? "your email" : "your phone"}`
       })) : e({
@@ -224,10 +227,10 @@ const Ge = me("Circle", [
       b(false);
     }
   }), d = () => __async(null, null, function* () {
-    if (!h.email || !h.phone || !h.fullName) {
+    if (!h.email || !h.fullName || !h.password) {
       e({
         title: "Error",
-        description: "Please fill all fields",
+        description: "Please fill all required fields",
         variant: "destructive"
       });
       return;
@@ -244,7 +247,7 @@ const Ge = me("Circle", [
         },
         body: JSON.stringify(s)
       }), l = yield i.json();
-      i.ok ? (N("otp-register"), e({
+      i.ok ? l.token && l.user ? w(l.token, l.user, "Account created successfully!") : (N("otp-register"), e({
         title: "Success",
         description: l.message
       }), l.warnings && (l.warnings.email && e({
@@ -634,7 +637,7 @@ const Ge = me("Circle", [
               children: [p === "mode" && `Welcome to ${o}`, p === "identifier" && "Login", p === "register-details" && "Create Account", p === "otp-login" && "Enter Verification Code", p === "otp-register" && "Verify Your Details", p === "google-profile" && "Complete Your Profile"]
             }), t.jsxs("p", {
               className: "text-gray-600 mt-2",
-              children: [p === "mode" && "Choose how you'd like to continue", p === "identifier" && "Enter your email address or phone number to login", p === "register-details" && "Fill in your details to create an account", p === "otp-login" && "We sent a verification code to your email or phone", p === "otp-register" && "We sent the same code to your email and phone", p === "google-profile" && "Add the remaining details needed for checkout and account setup"]
+              children: [p === "mode" && "Choose how you'd like to continue", p === "identifier" && "Enter your email and password to login", p === "register-details" && "Fill in your details to create an account", p === "otp-login" && "We sent a verification code to your email or phone", p === "otp-register" && "We sent the same code to your email and phone", p === "google-profile" && "Add the remaining details needed for checkout and account setup"]
             })]
           })]
         }), t.jsx(q, {
@@ -667,24 +670,35 @@ const Ge = me("Circle", [
         children: [U("login"), t.jsxs("div", {
           children: [t.jsx(M, {
             htmlFor: "identifier",
-            children: "Email or Phone Number"
+            children: "Email Address"
           }), t.jsx(J, {
             id: "identifier",
-            type: "text",
+            type: "email",
             value: G,
             onChange: (s) => Y(s.target.value),
-            placeholder: "Enter email or 08XXXXXXXXX",
+            placeholder: "Enter your email address",
             className: "mt-1"
-          }), t.jsx("p", {
-            className: "text-xs text-gray-500 mt-2",
-            children: "Format: email@example.com or 08XXXXXXXXX"
+          })]
+        }), t.jsxs("div", {
+          children: [t.jsx(M, {
+            htmlFor: "loginPassword",
+            children: "Password"
+          }), t.jsx(J, {
+            id: "loginPassword",
+            type: "password",
+            value: h.password,
+            onChange: (s) => L((i) => __spreadProps(__spreadValues({}, i), {
+              password: s.target.value
+            })),
+            placeholder: "Enter your password",
+            className: "mt-1"
           })]
         }), t.jsx(q, {
           className: "w-full",
           style: I,
           onClick: a,
           disabled: F,
-          children: F ? "Sending..." : "Send Verification Code"
+          children: F ? "Logging in..." : "Login"
         }), t.jsxs("div", {
           className: "text-center text-sm text-gray-600",
           children: ["Don't have an account?", " ", t.jsx("button", {
@@ -743,6 +757,20 @@ const Ge = me("Circle", [
             className: "mt-1"
           })]
         }), t.jsxs("div", {
+          children: [t.jsx(M, {
+            htmlFor: "registerPassword",
+            children: "Password"
+          }), t.jsx(J, {
+            id: "registerPassword",
+            type: "password",
+            value: h.password,
+            onChange: (s) => L((i) => __spreadProps(__spreadValues({}, i), {
+              password: s.target.value
+            })),
+            placeholder: "Create a password",
+            className: "mt-1"
+          })]
+        }), t.jsxs("div", {
           children: [t.jsxs(M, {
             htmlFor: "referralCode",
             className: "flex items-center gap-2",
@@ -792,6 +820,7 @@ const Ge = me("Circle", [
                 fullName: "",
                 email: "",
                 phone: "",
+                password: "",
                 referralCode: ""
               });
             },

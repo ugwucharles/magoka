@@ -163,7 +163,7 @@ const ge = n.memo(() => {
   }), y = g.filter((o) => o.isActive);
   let l = [...y];
   if (l.length === 0) {
-    const o = (i == null ? void 0 : i.name) || "EatYum";
+    const o = (i == null ? void 0 : i.name) || "magoka";
     l.push({
       id: "fallback-default",
       title: `Welcome to ${o}`,
@@ -179,13 +179,9 @@ const ge = n.memo(() => {
     d((o) => (o - 1 + l.length) % l.length);
   }, [l.length]);
   if (n.useEffect(() => {
-    if (l.length <= 1) return;
-    const o = setInterval(t, 5e3);
-    return () => clearInterval(o);
-  }, [t, l.length]), n.useEffect(() => {
     d(0);
   }, [l.length]), l.length === 0) {
-    const o = (i == null ? void 0 : i.name) || "EatYum", p = (i == null ? void 0 : i.colorScheme) || "#F02819";
+    const o = (i == null ? void 0 : i.name) || "magoka", p = (i == null ? void 0 : i.colorScheme) || "#F02819";
     return i != null && i.buttonColor, e.jsx("div", {
       className: "relative w-full h-48 sm:h-64 rounded-lg flex items-center justify-center text-white",
       style: {
@@ -341,34 +337,47 @@ const ye = n.memo(({
   }) : e.jsx("div", {
     className: "border-b bg-white sticky top-16 z-40",
     children: e.jsx("div", {
-      className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4",
+      className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3",
       children: e.jsx("div", {
-        className: "w-full overflow-x-auto scrollbar-hide",
+        className: "w-full overflow-x-auto",
+        style: { scrollbarWidth: "none", msOverflowStyle: "none" },
         children: e.jsxs("div", {
-          className: "flex space-x-3 pb-2 min-w-max",
-          children: [e.jsx(R, {
-            variant: s === null ? "default" : "outline",
-            size: "sm",
+          className: "flex space-x-2 py-1 min-w-max",
+          children: [e.jsxs("button", {
             onClick: () => d(null),
-            className: "rounded-full whitespace-nowrap flex-shrink-0 border-gray-300 hover:bg-gray-50",
             style: s === null ? {
-              backgroundColor: f,
-              color: "#FFFFFF",
-              borderColor: f
-            } : {},
-            children: "All Items"
-          }), h.map((l) => e.jsx(R, {
-            variant: s === l.id ? "default" : "outline",
-            size: "sm",
-            onClick: () => d(l.id),
-            className: "rounded-full whitespace-nowrap flex-shrink-0 border-gray-300 text-gray-700 hover:bg-gray-50",
-            style: s === l.id ? {
-              backgroundColor: f,
-              color: "#FFFFFF",
-              borderColor: f
-            } : {},
-            children: l.name
-          }, l.id))]
+              background: `linear-gradient(135deg, ${f} 0%, ${f}cc 100%)`,
+              color: "#fff",
+              boxShadow: `0 0 16px ${f}44, 0 3px 10px rgba(0,0,0,0.15)`,
+              border: "2px solid transparent"
+            } : {
+              background: "rgba(0,0,0,0.04)",
+              color: "#555",
+              border: "2px solid rgba(0,0,0,0.08)"
+            },
+            className: "flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap flex-shrink-0 transition-all duration-200 hover:scale-105 cursor-pointer outline-none",
+            children: [e.jsxs("svg", { width: 15, height: 15, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", children: [e.jsx("path", { d: "M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" }), e.jsx("path", { d: "M7 2v20" }), e.jsx("path", { d: "M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7" })] }), " All"]
+          }), h.map((l) => {
+            const nm = l.name.toLowerCase();
+            const sp = { width: 15, height: 15, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round" };
+            const icon = nm.includes("burger") || nm.includes("sandwich") ? e.jsxs("svg", { ...sp, children: [e.jsx("path", { d: "M4 6C4 4.9 8 4 12 4s8 .9 8 2" }), e.jsx("path", { d: "M2 8h20" }), e.jsx("path", { d: "M2 16h20" }), e.jsx("path", { d: "M4 18c0 1.1 4 2 8 2s8-.9 8-2" })] }) : nm.includes("chicken") || nm.includes("poultry") || nm.includes("turkey") ? e.jsx("svg", { ...sp, children: e.jsx("path", { d: "M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" }) }) : nm.includes("pizza") ? e.jsxs("svg", { ...sp, children: [e.jsx("path", { d: "M12 2l9 18H3z" }), e.jsx("circle", { cx: 10, cy: 14, r: 1, fill: "currentColor" }), e.jsx("circle", { cx: 14, cy: 16, r: 1, fill: "currentColor" })] }) : nm.includes("soup") || nm.includes("stew") || nm.includes("pepper") || nm.includes("egusi") ? e.jsxs("svg", { ...sp, children: [e.jsx("path", { d: "M4 11h16" }), e.jsx("path", { d: "M2 7h20" }), e.jsx("path", { d: "M6 7V5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v2" }), e.jsx("path", { d: "M4 11v6a8 8 0 0 0 16 0v-6" })] }) : nm.includes("rice") || nm.includes("jollof") || nm.includes("fried rice") ? e.jsxs("svg", { ...sp, children: [e.jsx("path", { d: "M2 12h20" }), e.jsx("path", { d: "M4 12v1a8 8 0 0 0 16 0v-1" }), e.jsx("path", { d: "M9 4v2M12 4v2M15 4v2" })] }) : nm.includes("fish") || nm.includes("seafood") || nm.includes("catfish") || nm.includes("prawn") ? e.jsxs("svg", { ...sp, children: [e.jsx("path", { d: "M6.5 12c.94-3.46 4.94-6 10.5-6-3.46.94-6 4.94-6 10.5 0 3.46.94 6.5 4.94 6.5 10.5 0 0-3.46-6.5-10.5-6.5z" }), e.jsx("path", { d: "M18 12l-7 7M18 12l-7-7" })] }) : nm.includes("grill") || nm.includes("suya") || nm.includes("bbq") || nm.includes("barbeque") ? e.jsx("svg", { ...sp, children: e.jsx("path", { d: "M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" }) }) : nm.includes("meat") || nm.includes("beef") || nm.includes("steak") ? e.jsxs("svg", { ...sp, children: [e.jsx("path", { d: "M7 3.34A10 10 0 1 1 2.02 12.51" }), e.jsx("path", { d: "M2 3h5v5H2z" })] }) : nm.includes("drink") || nm.includes("juice") || nm.includes("soda") || nm.includes("beverage") || nm.includes("water") ? e.jsxs("svg", { ...sp, children: [e.jsx("path", { d: "M6 8h12" }), e.jsx("path", { d: "M7 8C7 5.33 9.33 4 12 4s5 1.33 5 4" }), e.jsx("path", { d: "M6 8l1 13h10L18 8" }), e.jsx("path", { d: "M10 12h4" })] }) : nm.includes("dessert") || nm.includes("cake") || nm.includes("sweet") || nm.includes("pastry") ? e.jsxs("svg", { ...sp, children: [e.jsx("path", { d: "M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8" }), e.jsx("path", { d: "M4 21h16" }), e.jsx("path", { d: "M7 11V7a5 5 0 0 1 10 0v4" })] }) : nm.includes("wrap") || nm.includes("shawarma") || nm.includes("roll") ? e.jsxs("svg", { ...sp, children: [e.jsx("circle", { cx: 12, cy: 12, r: 10 }), e.jsx("path", { d: "M8 12c0-2 4-5 8-3M8 12c0 2 4 5 8 3" })] }) : nm.includes("salad") || nm.includes("veg") || nm.includes("green") ? e.jsx("svg", { ...sp, children: e.jsx("path", { d: "M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10zM2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12" }) }) : nm.includes("noodle") || nm.includes("pasta") || nm.includes("spaghetti") ? e.jsx("svg", { ...sp, children: e.jsx("path", { d: "M3 8c6-4 12 4 18 0M3 12c6-4 12 4 18 0M3 16c6-4 12 4 18 0" }) }) : nm.includes("fries") || nm.includes("side") || nm.includes("snack") || nm.includes("puff") ? e.jsxs("svg", { ...sp, children: [e.jsx("rect", { x: 3, y: 8, width: 18, height: 12, rx: 2 }), e.jsx("path", { d: "M8 8V6a4 4 0 0 1 8 0v2" })] }) : e.jsxs("svg", { ...sp, children: [e.jsx("path", { d: "M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" }), e.jsx("path", { d: "M7 2v20" }), e.jsx("path", { d: "M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7" })] });
+            const isActive = s === l.id;
+            return e.jsxs("button", {
+              onClick: () => d(l.id),
+              style: isActive ? {
+                background: `linear-gradient(135deg, ${f} 0%, ${f}cc 100%)`,
+                color: "#fff",
+                boxShadow: `0 0 16px ${f}44, 0 3px 10px rgba(0,0,0,0.15)`,
+                border: "2px solid transparent"
+              } : {
+                background: "rgba(0,0,0,0.04)",
+                color: "#555",
+                border: "2px solid rgba(0,0,0,0.08)"
+              },
+              className: "flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap flex-shrink-0 transition-all duration-200 hover:scale-105 cursor-pointer outline-none",
+              children: [icon, " ", l.name]
+            }, l.id);
+          })]
         })
       })
     })
@@ -499,50 +508,45 @@ const ve = n.memo(({
       children: q.map((a) => {
         var _a;
         var b, F;
-        const m = ((_a = (b = a.availability) == null ? void 0 : b.isAvailable) != null ? _a : true) && a.isActive !== false, N = ((F = a.availability) == null ? void 0 : F.priceOverride) || a.basePrice;
+        const N = a.basePrice;
         return e.jsxs("div", {
-          className: `bg-white rounded-lg shadow-sm border cursor-pointer hover:shadow-md transition-shadow ${m ? "" : "opacity-80 cursor-not-allowed"}`,
-          onClick: () => m && r(a),
+          className: "group bg-white rounded-2xl shadow-sm border border-gray-100 cursor-pointer hover:-translate-y-1 transition-all duration-300 ease-out overflow-hidden flex flex-col h-full",
+          onClick: () => r(a),
           children: [e.jsxs("div", {
-            className: "relative",
+            className: "relative overflow-hidden aspect-square rounded-t-2xl",
             children: [e.jsx(V, {
               src: a.imageUrl,
               alt: a.name,
-              className: "w-full aspect-square object-cover rounded-t-lg"
+              className: "w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
             }), a.isGiftBox && e.jsx("div", {
-              className: "absolute top-2 left-2 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg",
-              children: "\u{1F381} Gift Box"
+              className: "absolute top-3 left-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full shadow-md backdrop-blur-sm flex items-center gap-1",
+              children: "🎁 Gift Box"
             }), a.effectiveOrderAvailabilityMode === "preorder_only" && !a.isGiftBox && e.jsx("div", {
-              className: "absolute top-2 left-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg",
+              className: "absolute top-3 left-3 bg-gradient-to-r from-orange-500 to-amber-500 text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 rounded-full shadow-md backdrop-blur-sm flex items-center gap-1",
               children: "Pre-Order Only"
-            }), !m && e.jsx("div", {
-              className: "absolute inset-0 bg-black bg-opacity-60 rounded-t-lg flex items-center justify-center",
-              children: e.jsx("span", {
-                className: "text-white font-medium text-sm",
-                children: "Out Of Stock"
-              })
             })]
           }), e.jsxs("div", {
-            className: "p-2 sm:p-4",
+            className: "p-3.5 sm:p-5 flex flex-col flex-1",
             children: [e.jsx("h3", {
-              className: "text-sm sm:text-lg font-semibold text-gray-900 mb-1 sm:mb-2 leading-tight",
+              className: "text-sm sm:text-[17px] font-bold text-gray-900 mb-1 leading-snug group-hover:text-red-600 transition-colors duration-200 line-clamp-2",
               children: a.name
             }), a.effectiveOrderAvailabilityMode === "preorder_only" && e.jsxs("p", {
-              className: "text-xs text-orange-600 mb-1 sm:mb-2 flex items-center gap-1",
+              className: "text-[11px] sm:text-xs text-amber-600 bg-amber-50 px-2 py-0.5 rounded-md font-medium inline-flex items-center gap-1 mb-2 self-start",
               children: [e.jsx("span", {
-                children: "\u23F3"
-              }), " Requires ", a.preorderLeadTimeHours || 24, "hr advance notice"]
+                children: "⏳"
+              }), " Requires ", a.preorderLeadTimeHours || 24, "hr notice"]
             }), e.jsx("p", {
-              className: "text-xs text-gray-500 mb-1 sm:mb-2 hidden sm:block leading-relaxed",
+              className: "text-xs text-gray-500 mb-4 hidden sm:block leading-relaxed line-clamp-2",
               children: a.description
             }), e.jsxs("div", {
-              className: "flex items-center justify-between",
+              className: "flex items-center justify-between mt-auto pt-2",
               children: [e.jsxs("div", {
+                className: "flex flex-col",
                 children: [e.jsx("span", {
-                  className: "text-xs text-gray-500 block sm:hidden",
-                  children: "From"
+                  className: "text-[10px] text-gray-400 uppercase tracking-wider font-semibold",
+                  children: "Price"
                 }), e.jsx("span", {
-                  className: "text-sm sm:text-lg font-bold",
+                  className: "text-base sm:text-xl font-extrabold tracking-tight",
                   style: {
                     color: O
                   },
@@ -550,16 +554,38 @@ const ve = n.memo(({
                 })]
               }), e.jsx(R, {
                 size: "sm",
-                className: "hidden sm:inline-flex transition-opacity hover:opacity-90",
+                className: "hidden sm:inline-flex font-semibold px-4 py-2.5 rounded-xl shadow-sm hover:shadow transition-all duration-200 active:scale-95",
                 style: {
-                  backgroundColor: m ? a.effectiveOrderAvailabilityMode === "preorder_only" ? "#F97316" : A : void 0,
+                  backgroundColor: a.effectiveOrderAvailabilityMode === "preorder_only" ? "#F97316" : A,
                   color: "#FFFFFF"
                 },
                 onClick: (I) => {
-                  I.stopPropagation(), m && r(a);
+                  I.stopPropagation(), r(a);
                 },
-                disabled: !m,
-                children: m ? a.effectiveOrderAvailabilityMode === "preorder_only" ? "Pre-Order" : "Add to Cart" : "Out of Stock"
+                disabled: false,
+                children: a.effectiveOrderAvailabilityMode === "preorder_only" ? "Pre-Order" : "Add"
+              }), e.jsx("div", {
+                className: "sm:hidden w-8 h-8 rounded-full flex items-center justify-center shadow-sm border border-gray-100 transition-all active:scale-90",
+                style: {
+                  backgroundColor: a.effectiveOrderAvailabilityMode === "preorder_only" ? "#F97316" : A,
+                  color: "#FFFFFF"
+                },
+                onClick: (I) => {
+                  I.stopPropagation(), r(a);
+                },
+                children: e.jsx("svg", {
+                  width: 14,
+                  height: 14,
+                  viewBox: "0 0 24 24",
+                  fill: "none",
+                  stroke: "currentColor",
+                  strokeWidth: 3,
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  children: e.jsx("path", {
+                    d: "M12 5v14M5 12h14"
+                  })
+                })
               })]
             })]
           })]
@@ -678,53 +704,52 @@ function je({
   };
   return e.jsxs(e.Fragment, {
     children: [e.jsxs("div", {
-      className: "bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow cursor-pointer",
       onClick: U,
+      style: {
+        background: "#1c1c1c",
+        borderRadius: "16px",
+        overflow: "hidden",
+        cursor: "pointer",
+        transition: "transform 0.2s ease, box-shadow 0.2s ease",
+        boxShadow: "0 4px 16px rgba(0,0,0,0.18)"
+      },
+      onMouseEnter: (k) => { k.currentTarget.style.transform = "translateY(-4px)"; },
+      onMouseLeave: (k) => { k.currentTarget.style.transform = "translateY(0)"; },
       children: [e.jsxs("div", {
-        className: "relative",
+        style: { position: "relative", height: "200px", overflow: "hidden" },
         children: [e.jsx(V, {
           src: s.imageUrl || "/placeholder-food.jpg",
           alt: s.name,
-          className: "w-full h-48 object-cover"
+          className: "w-full h-full object-cover"
+        }), e.jsx("div", {
+          style: { position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.15) 55%, transparent 100%)" }
         }), S && e.jsx("div", {
-          className: "absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center",
+          style: { position: "absolute", inset: 0, background: "rgba(0,0,0,0.6)", display: "flex", alignItems: "center", justifyContent: "center" },
           children: e.jsx("span", {
-            className: "text-white font-semibold text-lg",
+            style: { color: "#fff", fontWeight: 700, background: "rgba(255,255,255,0.12)", padding: "6px 16px", borderRadius: "20px", backdropFilter: "blur(4px)" },
             children: "Out of Stock"
           })
         }), T && !S && e.jsx("div", {
-          className: "absolute top-2 left-2 bg-orange-500 text-white px-2 py-1 rounded text-xs font-medium",
-          children: "Pre-Order Only"
-        })]
-      }), e.jsxs("div", {
-        className: "p-4",
-        children: [e.jsx("h3", {
-          className: "font-semibold text-lg text-gray-900 mb-2 line-clamp-2",
-          children: s.name
-        }), s.description && e.jsx("p", {
-          className: "text-gray-600 text-sm mb-3 line-clamp-2",
-          children: s.description
+          style: { position: "absolute", top: 10, left: 10, background: "linear-gradient(135deg,#f97316,#ea580c)", color: "#fff", padding: "3px 10px", borderRadius: "20px", fontSize: "11px", fontWeight: 700, boxShadow: "0 2px 8px rgba(249,115,22,0.45)" },
+          children: "Pre-Order"
+        }), !T && !S && e.jsx("div", {
+          style: { position: "absolute", top: 10, left: 10, background: "rgba(255,215,0,0.92)", color: "#1a1a1a", padding: "3px 10px", borderRadius: "20px", fontSize: "11px", fontWeight: 800 },
+          children: "\u2B50 Best Seller"
         }), e.jsxs("div", {
-          className: "flex items-center justify-between",
-          children: [e.jsx("span", {
-            className: "text-lg font-bold",
-            style: {
-              color: O
-            },
+          style: { position: "absolute", bottom: 10, left: 12, right: 52 },
+          children: [e.jsx("h3", {
+            style: { color: "#fff", fontWeight: 700, fontSize: "14px", lineHeight: 1.3, margin: 0, textShadow: "0 1px 4px rgba(0,0,0,0.6)", overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" },
+            children: s.name
+          }), e.jsx("span", {
+            style: { color: O, fontWeight: 800, fontSize: "16px" },
             children: ce(s.basePrice)
-          }), e.jsx(R, {
-            onClick: (k) => {
-              k.stopPropagation(), U();
-            },
-            disabled: S,
-            size: "sm",
-            className: "hidden sm:flex transition-opacity hover:opacity-90",
-            style: {
-              backgroundColor: T ? "#F97316" : A,
-              color: "#FFFFFF"
-            },
-            children: S ? "Out of Stock" : T ? "Pre-Order" : "Add to Cart"
           })]
+        }), !S && e.jsx("button", {
+          onClick: (k) => { k.stopPropagation(); U(); },
+          style: { position: "absolute", bottom: 8, right: 8, width: 36, height: 36, borderRadius: "50%", background: `linear-gradient(135deg,${A},${A}bb)`, color: "#1a1a1a", border: "none", fontSize: "22px", fontWeight: 400, cursor: "pointer", boxShadow: `0 3px 10px ${A}55`, display: "flex", alignItems: "center", justifyContent: "center", lineHeight: 1, transition: "transform 0.15s ease" },
+          onMouseEnter: (k) => { k.currentTarget.style.transform = "scale(1.18)"; },
+          onMouseLeave: (k) => { k.currentTarget.style.transform = "scale(1)"; },
+          children: "+"
         })]
       })]
     }), c && e.jsx(oe, {
@@ -802,39 +827,37 @@ function Pe({
       })]
     })
   }) : g.length === 0 ? null : e.jsx("section", {
-    className: "bg-white py-8 border-b border-gray-200",
+    style: { background: "linear-gradient(180deg, #111 0%, #1a1a1a 100%)", padding: "32px 0" },
     children: e.jsxs("div", {
       className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
       children: [e.jsxs("div", {
         className: "flex items-center justify-between mb-6",
-        children: [e.jsx("h2", {
-          className: "text-2xl font-bold text-gray-900",
-          children: "Popular Meals"
+        children: [e.jsxs("div", {
+          children: [e.jsx("h2", {
+            style: { fontSize: "22px", fontWeight: 800, color: "#fff", margin: 0, letterSpacing: "-0.3px" },
+            children: "\uD83D\uDD25 Best Sellers"
+          }), e.jsx("p", {
+            style: { color: "rgba(255,255,255,0.45)", fontSize: "13px", marginTop: "2px" },
+            children: "Most loved dishes right now"
+          })]
         }), e.jsxs("div", {
           className: "hidden md:flex space-x-2",
           children: [e.jsx("button", {
             onClick: y,
-            className: "p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors",
+            style: { width: 36, height: 36, borderRadius: "50%", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", transition: "background 0.2s", color: "#fff" },
             "aria-label": "Scroll left",
-            children: e.jsx(le, {
-              className: "h-5 w-5"
-            })
+            children: e.jsx(le, { className: "h-4 w-4" })
           }), e.jsx("button", {
             onClick: f,
-            className: "p-2 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors",
+            style: { width: 36, height: 36, borderRadius: "50%", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", transition: "background 0.2s", color: "#fff" },
             "aria-label": "Scroll right",
-            children: e.jsx(ae, {
-              className: "h-5 w-5"
-            })
+            children: e.jsx(ae, { className: "h-4 w-4" })
           })]
         })]
       }), e.jsx("div", {
         ref: d,
-        className: "flex space-x-4 overflow-x-auto scrollbar-hide pb-4",
-        style: {
-          scrollbarWidth: "none",
-          msOverflowStyle: "none"
-        },
+        className: "flex space-x-4 overflow-x-auto py-4 -my-4",
+        style: { scrollbarWidth: "none", msOverflowStyle: "none", paddingTop: "20px", paddingBottom: "24px" },
         children: g.map((h) => e.jsx("div", {
           className: "flex-none w-64",
           children: e.jsx(je, {
@@ -928,10 +951,12 @@ function Be({
         }, u))
       }) : e.jsx("div", {
         ref: i,
-        className: "flex space-x-4 overflow-x-auto scrollbar-hide pb-4",
+        className: "flex space-x-4 overflow-x-auto scrollbar-hide py-4 -my-4",
         style: {
           scrollbarWidth: "none",
-          msOverflowStyle: "none"
+          msOverflowStyle: "none",
+          paddingTop: "20px",
+          paddingBottom: "24px"
         },
         children: f.map((t) => e.jsx("div", {
           className: "flex-none w-64",
@@ -1079,10 +1104,10 @@ const be = n.memo(({
       children: r.map((a) => {
         var _a;
         var F, I;
-        const m = ((_a = (F = a.availability) == null ? void 0 : F.isAvailable) != null ? _a : true) && a.isActive !== false, N = ((I = a.availability) == null ? void 0 : I.priceOverride) || a.basePrice, b = a.effectiveOrderAvailabilityMode === "preorder_only";
+        const N = a.basePrice, b = a.effectiveOrderAvailabilityMode === "preorder_only";
         return e.jsxs("div", {
-          className: `bg-white rounded-lg shadow-sm border cursor-pointer hover:shadow-md transition-shadow ${m ? "" : "opacity-80 cursor-not-allowed"}`,
-          onClick: () => m && w(a),
+          className: "bg-white rounded-lg shadow-sm border cursor-pointer hover:shadow-md transition-shadow",
+          onClick: () => w(a),
           children: [e.jsxs("div", {
             className: "relative",
             children: [e.jsx(V, {
@@ -1095,12 +1120,6 @@ const be = n.memo(({
             }), b && !a.isGiftBox && e.jsx("div", {
               className: "absolute top-2 left-2 bg-orange-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg",
               children: "Pre-Order Only"
-            }), !m && e.jsx("div", {
-              className: "absolute inset-0 bg-black bg-opacity-60 rounded-t-lg flex items-center justify-center",
-              children: e.jsx("span", {
-                className: "text-white font-medium text-sm",
-                children: "Out Of Stock"
-              })
             })]
           }), e.jsxs("div", {
             className: "p-2 sm:p-4",
@@ -1132,14 +1151,14 @@ const be = n.memo(({
                 size: "sm",
                 className: "hidden sm:inline-flex transition-opacity hover:opacity-90",
                 style: {
-                  backgroundColor: m ? b ? "#F97316" : S : void 0,
+                  backgroundColor: b ? "#F97316" : S,
                   color: "#FFFFFF"
                 },
                 onClick: (H) => {
-                  H.stopPropagation(), m && w(a);
+                  H.stopPropagation(), w(a);
                 },
-                disabled: !m,
-                children: m ? b ? "Pre-Order" : "Add to Cart" : "Out of Stock"
+                disabled: false,
+                children: b ? "Pre-Order" : "Add to Cart"
               })]
             })]
           })]
@@ -1210,16 +1229,12 @@ function Ge({
           onKeyDown: (h) => {
             i && (h.key === "Enter" || h.key === " ") && (h.preventDefault(), g());
           },
-          children: [e.jsx("img", {
-            src: s.imageUrl,
-            alt: s.title || "Popup image",
-            className: `w-full h-auto object-contain max-h-96 ${i ? "cursor-pointer" : "cursor-default"}`,
-            onClick: g
-          }), s.title && e.jsx("div", {
-            className: "absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4",
+          children: [e.jsx("div", {
+            className: "w-full h-96 flex items-center justify-center",
+            style: { background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" },
             children: e.jsx("h3", {
-              className: "text-white font-semibold text-lg",
-              children: s.title
+              className: "text-white font-bold text-2xl text-center px-4",
+              children: "Run Campaigns Here"
             })
           })]
         })
@@ -1237,10 +1252,11 @@ function We({
         const t = yield fetch(`/api/popups/outlet/${s}`);
         if (t.ok) {
           const u = yield t.json();
-          if (u) {
-            const o = `popup_dismissed_${u.id}_outlet_${s}`;
+          const popup = Array.isArray(u) ? u[0] : u;
+          if (popup && popup.id) {
+            const o = `popup_dismissed_${popup.id}_outlet_${s}`;
             if (sessionStorage.getItem(o) === "true") return;
-            c(u), g(true), f(s);
+            c(popup), g(true), f(s);
           }
         }
       } catch (t) {
@@ -1502,7 +1518,7 @@ function Kt() {
     }));
   }, [k, t]);
   const a = n.useMemo(() => {
-    const x = !r || r.name === "EatYum" ? "/eatyum-logo.png" : "/logo.png", j = (r == null ? void 0 : r.logoLightUrl) || (r == null ? void 0 : r.logoDarkUrl) || (r == null ? void 0 : r.logoUrl) || x, E = (r == null ? void 0 : r.logoDarkUrl) || j;
+    const x = !r || r.name === "magoka" ? "/magoka-logo.png" : "/logo.png", j = (r == null ? void 0 : r.logoLightUrl) || (r == null ? void 0 : r.logoDarkUrl) || (r == null ? void 0 : r.logoUrl) || x, E = (r == null ? void 0 : r.logoDarkUrl) || j;
     return {
       light: j,
       dark: E
@@ -1602,7 +1618,7 @@ function Kt() {
         uuid_c1: "homepage"
       }), Ce("Homepage", {
         content_type: "page",
-        content_name: `${(r == null ? void 0 : r.name) || "EatYum"} Food Delivery Homepage`,
+        content_name: `${(r == null ? void 0 : r.name) || "magoka"} Food Delivery Homepage`,
         content_category: "homepage"
       }), Fe("Homepage");
     } catch (x) {
@@ -1664,32 +1680,49 @@ function Kt() {
         selectedCategory: i,
         onCategorySelect: g
       }), e.jsx("div", {
-        className: "bg-white border-b border-gray-200",
+        style: {
+          background: "linear-gradient(135deg, rgba(255,255,255,0.97) 0%, rgba(250,250,250,0.95) 100%)",
+          backdropFilter: "blur(12px)",
+          borderBottom: "1px solid rgba(0,0,0,0.07)",
+          boxShadow: "0 2px 20px rgba(0,0,0,0.06)"
+        },
         children: e.jsx("div", {
           className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3",
           children: e.jsxs("div", {
             className: "flex items-center justify-between",
             children: [e.jsxs("div", {
-              className: "flex items-center space-x-3",
-              children: [e.jsx("div", {
-                className: ["w-2 h-2 rounded-full", D ? _ ? "bg-green-500" : "bg-red-500" : "bg-gray-400"].join(" ")
+              className: "flex items-center gap-3",
+              children: [e.jsxs("div", {
+                style: { position: "relative", flexShrink: 0, width: 14, height: 14 },
+                children: [e.jsx("div", {
+                  style: { width: 12, height: 12, borderRadius: "50%", background: D ? _ ? "#22c55e" : "#ef4444" : "#9ca3af", position: "absolute", top: 1, left: 1 }
+                }), D && _ && e.jsx("div", {
+                  style: { width: 14, height: 14, borderRadius: "50%", background: "#22c55e", position: "absolute", top: 0, left: 0, opacity: 0.5, animation: "ping 1.5s cubic-bezier(0,0,0.2,1) infinite" }
+                })]
               }), e.jsxs("div", {
                 children: [e.jsx("h2", {
-                  className: "text-lg font-semibold text-gray-900",
+                  style: { fontSize: "14px", fontWeight: 700, color: "#111", margin: 0, lineHeight: 1.2 },
                   children: t.selectedOutlet.name
                 }), e.jsx("p", {
-                  className: "text-sm text-gray-600",
+                  style: { fontSize: "12px", color: "#888", margin: 0, lineHeight: 1.2 },
                   children: t.selectedOutlet.address
                 })]
               })]
             }), e.jsxs("div", {
-              className: "text-right",
-              children: [e.jsx("p", {
-                className: ["text-sm font-medium", D ? _ ? "text-green-600" : "text-red-600" : "text-gray-600"].join(" "),
-                children: D ? _ ? "Open for delivery" : "Closed" : "Inactive"
-              }), e.jsx("p", {
-                className: "text-xs text-gray-500",
-                children: t.distance != null ? `${t.distance} km away` : ""
+              className: "flex items-center gap-2",
+              children: [t.distance != null && e.jsxs("div", {
+                style: { background: "rgba(0,0,0,0.05)", borderRadius: "20px", padding: "4px 10px", fontSize: "12px", color: "#555", fontWeight: 600, display: "flex", alignItems: "center", gap: 4 },
+                children: ["\uD83D\uDCCD ", t.distance, " km"]
+              }), e.jsx("div", {
+                style: {
+                  padding: "4px 12px",
+                  borderRadius: "20px",
+                  fontSize: "12px",
+                  fontWeight: 700,
+                  background: D ? _ ? "rgba(16,185,129,0.1)" : "rgba(239,68,68,0.1)" : "rgba(0,0,0,0.05)",
+                  color: D ? _ ? "#059669" : "#dc2626" : "#888"
+                },
+                children: D ? _ ? "\u2713 Open" : "\u2715 Closed" : "Inactive"
               })]
             })]
           })
@@ -1748,7 +1781,7 @@ function Kt() {
       children: e.jsxs("div", {
         className: "max-w-6xl mx-auto px-6",
         children: [e.jsx("div", {
-          className: "grid grid-cols-2 md:grid-cols-4 gap-12 mb-12",
+          className: "grid grid-cols-2 md:grid-cols-4 gap-12 mb-16",
           children: [e.jsxs("div", {
             children: [e.jsx("h3", {
               className: "text-white font-semibold mb-4 text-sm tracking-wide",
@@ -1875,14 +1908,24 @@ function Kt() {
                   className: "hover:text-white transition-colors duration-200",
                   children: r.supportEmail
                 })
+              }), e.jsx("li", {
+                children: e.jsx("span", {
+                  className: "text-gray-600",
+                  children: "\u00A0"
+                })
+              }), e.jsx("li", {
+                children: e.jsx("span", {
+                  className: "text-gray-600",
+                  children: "\u00A0"
+                })
               })]
             })]
           })]
         }), e.jsxs("div", {
-          className: "border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center",
+          className: "border-t border-gray-800 pt-16 flex flex-col md:flex-row justify-between items-center",
           children: [e.jsxs("p", {
             className: "text-xs",
-            children: ["\xA9 2025 ", (r == null ? void 0 : r.name) || "EatYum", ". All rights reserved."]
+            children: ["\xA9 2025 ", (r == null ? void 0 : r.name) || "magoka", ". All rights reserved."]
           }), e.jsx("div", {
             className: "flex items-center space-x-6 mt-4 md:mt-0",
             children: e.jsx("a", {

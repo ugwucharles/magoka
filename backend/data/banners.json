@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "brandId": 1,
+    "title": "Place Your Ad Hereee",
+    "subtitle": "Banner 1",
+    "imageUrl": "https://placehold.co/800x400/FF0000/FFFFFF?text=Place+Your+Ad+Here",
+    "linkUrl": null,
+    "sortOrder": 1,
+    "isActive": true,
+    "bannerType": "carousel"
+  },
+  {
+    "id": 2,
+    "brandId": 1,
+    "title": "Place Your Ad Here",
+    "subtitle": "Banner 2",
+    "imageUrl": "https://placehold.co/800x400/00B900/FFFFFF?text=Place+Your+Ad+Here",
+    "linkUrl": "",
+    "sortOrder": 2,
+    "isActive": true,
+    "bannerType": "carousel"
+  },
+  {
+    "id": 3,
+    "brandId": 1,
+    "title": "Place Your Ad Here",
+    "subtitle": "Banner 3",
+    "imageUrl": "https://placehold.co/800x400/0096FB/FFFFFF?text=Place+Your+Ad+Here",
+    "linkUrl": "",
+    "sortOrder": 3,
+    "isActive": true,
+    "bannerType": "carousel"
+  },
+  {
+    "id": 4,
+    "brandId": 1,
+    "title": "Place Your Ad Here",
+    "subtitle": "Banner 4",
+    "imageUrl": "https://placehold.co/800x400/FFB800/FFFFFF?text=Place+Your+Ad+Here",
+    "linkUrl": "",
+    "sortOrder": 4,
+    "isActive": true,
+    "bannerType": "carousel"
+  }
+]

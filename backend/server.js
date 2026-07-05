@@ -6,6 +6,7 @@ const path = require('path');
 const authRouter = require('./src/routes/auth');
 const coreRouter = require('./src/routes/core');
 const ordersRouter = require('./src/routes/orders');
+const adminCatalogRouter = require('./src/routes/adminCatalog');
 const { router: adminRouter } = require('./src/routes/admin');
 
 const app = express();
@@ -26,6 +27,7 @@ app.use((req, res, next) => {
 
 // API Routes
 app.use('/api', adminRouter);
+app.use('/api', adminCatalogRouter);
 app.use('/api', authRouter);
 app.use('/api', coreRouter);
 app.use('/api', ordersRouter);
@@ -33,6 +35,22 @@ app.use('/api', ordersRouter);
 // Fallback/Mock handlers for unhandled API routes
 // This prevents frontend crashes on unhandled admin/integrations endpoints
 app.use('/api/*', (req, res) => {
+    if (req.originalUrl.includes('/admin/payouts/pending')) {
+        return res.json({ count: 0, items: [] });
+    }
+
+    if (req.originalUrl.includes('/admin/stats/daily-progress')) {
+        return res.json([]);
+    }
+
+    if (req.originalUrl.includes('/spin-win/vouchers')) {
+        return res.json([]);
+    }
+
+    if (req.originalUrl.includes('/spin-campaigns/active')) {
+        return res.json({ campaign: null, prizes: [] });
+    }
+
     console.warn(`⚠️  MOCK FALLBACK: Unhandled API route ${req.method} ${req.originalUrl}`);
     
     // Return appropriate mock data based on the route
@@ -47,6 +65,10 @@ app.use('/api/*', (req, res) => {
     });
 });
 
+// Serve uploaded files
+const uploadsPath = path.resolve(__dirname, 'uploads');
+app.use('/uploads', express.static(uploadsPath));
+
 // Serve frontend static files
 const frontendPath = path.resolve(__dirname, process.env.FRONTEND_PATH || '../eatyum.food');
 app.use(express.static(frontendPath));
@@ -56,9 +78,13 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
-// Start Server
-app.listen(PORT, () => {
-    console.log(`\n🚀 MAGOKA Backend Server successfully started!`);
-    console.log(`📡 Local Access: http://localhost:${PORT}`);
-    console.log(`📂 Serving Frontend from: ${frontendPath}\n`);
-});
+module.exports = app;
+
+// Start Server when run directly (not as Vercel serverless import)
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`\n🚀 MAGOKA Backend Server successfully started!`);
+        console.log(`📡 Local Access: http://localhost:${PORT}`);
+        console.log(`📂 Serving Frontend from: ${frontendPath}\n`);
+    });
+}

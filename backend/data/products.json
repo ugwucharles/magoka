@@ -1,0 +1,398 @@
+[
+    {
+        "brandId":  1,
+        "slug":  "grilled-salmon-delight",
+        "id":  1001,
+        "isPopular":  true,
+        "imageUrl":  "https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600\u0026auto=format\u0026fit=crop",
+        "preparationTime":  20,
+        "name":  "Grilled Salmon Delight",
+        "categoryId":  100,
+        "createdAt":  "2026-07-01T16:32:19.359Z",
+        "isActive":  true,
+        "outletIds":  [
+                          9
+                      ],
+        "basePrice":  "4500",
+        "description":  "Fresh Atlantic salmon grilled to perfection with herbs and lemon butter sauce.",
+        "bulkServingOptions":  [
+
+                               ],
+        "orderAvailabilityMode":  "both",
+        "sortOrder":  1,
+        "productSalesChannels":  [
+
+                                 ],
+        "categoryIds":  [
+                            100
+                        ],
+        "preorderLeadTimeHours":  null,
+        "channelPrices":  [
+
+                          ],
+        "updatedAt":  "2026-07-01T16:32:19.359Z"
+    },
+    {
+        "brandId":  1,
+        "slug":  "lobster-thermidor",
+        "id":  1002,
+        "isPopular":  true,
+        "imageUrl":  "https://images.unsplash.com/photo-1559747551-0f0f9f0f0f0f?w=600\u0026auto=format\u0026fit=crop",
+        "preparationTime":  25,
+        "name":  "Lobster Thermidor",
+        "categoryId":  100,
+        "createdAt":  "2026-07-01T16:32:19.359Z",
+        "isActive":  true,
+        "outletIds":  [
+                          9
+                      ],
+        "basePrice":  "6500",
+        "description":  "Classic French dish with lobster in rich creamy sauce topped with cheese.",
+        "bulkServingOptions":  [
+
+                               ],
+        "orderAvailabilityMode":  "both",
+        "sortOrder":  2,
+        "productSalesChannels":  [
+
+                                 ],
+        "categoryIds":  [
+                            100
+                        ],
+        "preorderLeadTimeHours":  null,
+        "channelPrices":  [
+
+                          ],
+        "updatedAt":  "2026-07-01T16:32:19.364Z"
+    },
+    {
+        "brandId":  1,
+        "slug":  "wagyu-beef-burger",
+        "id":  1003,
+        "isPopular":  true,
+        "imageUrl":  "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600\u0026auto=format\u0026fit=crop",
+        "preparationTime":  15,
+        "name":  "Wagyu Beef Burger",
+        "categoryId":  100,
+        "createdAt":  "2026-07-01T16:32:19.364Z",
+        "isActive":  true,
+        "outletIds":  [
+                          9
+                      ],
+        "basePrice":  "5500",
+        "description":  "Premium Japanese Wagyu beef patty with truffle aioli and caramelized onions.",
+        "bulkServingOptions":  [
+
+                               ],
+        "orderAvailabilityMode":  "both",
+        "sortOrder":  3,
+        "productSalesChannels":  [
+
+                                 ],
+        "categoryIds":  [
+                            100
+                        ],
+        "preorderLeadTimeHours":  null,
+        "channelPrices":  [
+
+                          ],
+        "updatedAt":  "2026-07-01T16:32:19.364Z"
+    },
+    {
+        "id":  101,
+        "brandId":  1,
+        "name":  "Steaming Ramen Breakfast",
+        "description":  "Classic hot ramen served with a soft-boiled egg, fresh scallions, and light soy broth.",
+        "basePrice":  "1500",
+        "slug":  "steaming-ramen-breakfast",
+        "imageUrl":  "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600\u0026auto=format\u0026fit=crop",
+        "categoryId":  43,
+        "categoryIds":  [
+                            43
+                        ],
+        "outletIds":  [
+                          9
+                      ],
+        "isActive":  true,
+        "isPopular":  true,
+        "sortOrder":  1,
+        "preparationTime":  15,
+        "orderAvailabilityMode":  "both",
+        "preorderLeadTimeHours":  null,
+        "bulkServingOptions":  [
+
+                               ],
+        "productSalesChannels":  [
+
+                                 ],
+        "channelPrices":  [
+
+                          ],
+        "createdAt":  "2026-07-01T14:23:01.355Z",
+        "updatedAt":  "2026-07-01T14:23:01.356Z"
+    },
+    {
+        "id":  102,
+        "brandId":  1,
+        "name":  "Sunrise Pancake Stack",
+        "description":  "Three fluffy pancakes topped with butter and organic maple syrup.",
+        "basePrice":  "1200",
+        "slug":  "sunrise-pancake-stack",
+        "imageUrl":  "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=600\u0026auto=format\u0026fit=crop",
+        "categoryId":  43,
+        "categoryIds":  [
+                            43
+                        ],
+        "outletIds":  [
+                          9
+                      ],
+        "isActive":  true,
+        "isPopular":  true,
+        "sortOrder":  2,
+        "preparationTime":  15,
+        "orderAvailabilityMode":  "both",
+        "preorderLeadTimeHours":  null,
+        "bulkServingOptions":  [
+
+                               ],
+        "productSalesChannels":  [
+
+                                 ],
+        "channelPrices":  [
+
+                          ],
+        "createdAt":  "2026-07-01T14:23:01.356Z",
+        "updatedAt":  "2026-07-01T14:23:01.356Z"
+    },
+    {
+        "id":  201,
+        "brandId":  1,
+        "name":  "Gourmet Cheese Burger",
+        "description":  "Juicy prime beef patty, melted sharp cheddar, crisp lettuce, and signature burger sauce.",
+        "basePrice":  "2400",
+        "slug":  "gourmet-cheese-burger",
+        "imageUrl":  "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600\u0026auto=format\u0026fit=crop",
+        "categoryId":  3,
+        "categoryIds":  [
+                            3
+                        ],
+        "outletIds":  [
+                          9
+                      ],
+        "isActive":  true,
+        "isPopular":  true,
+        "sortOrder":  1,
+        "preparationTime":  15,
+        "orderAvailabilityMode":  "both",
+        "preorderLeadTimeHours":  null,
+        "bulkServingOptions":  [
+
+                               ],
+        "productSalesChannels":  [
+
+                                 ],
+        "channelPrices":  [
+
+                          ],
+        "createdAt":  "2026-07-01T14:23:01.356Z",
+        "updatedAt":  "2026-07-01T14:23:01.356Z"
+    },
+    {
+        "id":  202,
+        "brandId":  1,
+        "name":  "Crispy Chicken Shawarma Wrap",
+        "description":  "Marinated grilled chicken, garlic paste, and pickles wrapped in warm pita bread.",
+        "basePrice":  "1800",
+        "slug":  "crispy-chicken-shawarma-wrap",
+        "imageUrl":  "https://images.unsplash.com/photo-1529042410759-befb1204b468?w=600\u0026auto=format\u0026fit=crop",
+        "categoryId":  3,
+        "categoryIds":  [
+                            3
+                        ],
+        "outletIds":  [
+                          9
+                      ],
+        "isActive":  true,
+        "isPopular":  true,
+        "sortOrder":  2,
+        "preparationTime":  15,
+        "orderAvailabilityMode":  "both",
+        "preorderLeadTimeHours":  null,
+        "bulkServingOptions":  [
+
+                               ],
+        "productSalesChannels":  [
+
+                                 ],
+        "channelPrices":  [
+
+                          ],
+        "createdAt":  "2026-07-01T14:23:01.356Z",
+        "updatedAt":  "2026-07-01T14:23:01.356Z"
+    },
+    {
+        "id":  301,
+        "brandId":  1,
+        "name":  "Spicy Buffalo Wings",
+        "description":  "6 pieces of crispy chicken wings tossed in fiery buffalo sauce, served with blue cheese dip.",
+        "basePrice":  "2200",
+        "slug":  "spicy-buffalo-wings",
+        "imageUrl":  "https://images.unsplash.com/photo-1567620832903-9fc6debc209f?w=600\u0026auto=format\u0026fit=crop",
+        "categoryId":  6,
+        "categoryIds":  [
+                            6
+                        ],
+        "outletIds":  [
+                          9
+                      ],
+        "isActive":  true,
+        "isPopular":  true,
+        "sortOrder":  1,
+        "preparationTime":  15,
+        "orderAvailabilityMode":  "both",
+        "preorderLeadTimeHours":  null,
+        "bulkServingOptions":  [
+
+                               ],
+        "productSalesChannels":  [
+
+                                 ],
+        "channelPrices":  [
+
+                          ],
+        "createdAt":  "2026-07-01T14:23:01.356Z",
+        "updatedAt":  "2026-07-01T14:23:01.356Z"
+    },
+    {
+        "id":  401,
+        "brandId":  1,
+        "name":  "Loaded Cheese Fries",
+        "description":  "Golden crispy french fries drenched in rich cheese sauce and spring onions.",
+        "basePrice":  "1300",
+        "slug":  "loaded-cheese-fries",
+        "imageUrl":  "https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=600\u0026auto=format\u0026fit=crop",
+        "categoryId":  13,
+        "categoryIds":  [
+                            13
+                        ],
+        "outletIds":  [
+                          9
+                      ],
+        "isActive":  true,
+        "isPopular":  true,
+        "sortOrder":  1,
+        "preparationTime":  15,
+        "orderAvailabilityMode":  "both",
+        "preorderLeadTimeHours":  null,
+        "bulkServingOptions":  [
+
+                               ],
+        "productSalesChannels":  [
+
+                                 ],
+        "channelPrices":  [
+
+                          ],
+        "createdAt":  "2026-07-01T14:23:01.356Z",
+        "updatedAt":  "2026-07-01T14:23:01.356Z"
+    },
+    {
+        "id":  501,
+        "brandId":  1,
+        "name":  "Fresh Orange Juice",
+        "description":  "100% organic freshly squeezed sweet oranges.",
+        "basePrice":  "800",
+        "slug":  "fresh-orange-juice",
+        "imageUrl":  "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600\u0026auto=format\u0026fit=crop",
+        "categoryId":  4,
+        "categoryIds":  [
+                            4
+                        ],
+        "outletIds":  [
+                          9
+                      ],
+        "isActive":  true,
+        "isPopular":  true,
+        "sortOrder":  1,
+        "preparationTime":  5,
+        "orderAvailabilityMode":  "both",
+        "preorderLeadTimeHours":  null,
+        "bulkServingOptions":  [
+
+                               ],
+        "productSalesChannels":  [
+
+                                 ],
+        "channelPrices":  [
+
+                          ],
+        "createdAt":  "2026-07-01T14:23:01.356Z",
+        "updatedAt":  "2026-07-01T14:23:01.356Z"
+    },
+    {
+        "id":  502,
+        "brandId":  1,
+        "name":  "Iced Caramel Latte",
+        "description":  "Double shot espresso, creamy milk, and rich caramel syrup over ice.",
+        "basePrice":  "1100",
+        "slug":  "iced-caramel-latte",
+        "imageUrl":  "https://images.unsplash.com/photo-1586190848861-99aa4a171e90?w=600\u0026auto=format\u0026fit=crop",
+        "categoryId":  4,
+        "categoryIds":  [
+                            4
+                        ],
+        "outletIds":  [
+                          9
+                      ],
+        "isActive":  true,
+        "isPopular":  true,
+        "sortOrder":  2,
+        "preparationTime":  5,
+        "orderAvailabilityMode":  "both",
+        "preorderLeadTimeHours":  null,
+        "bulkServingOptions":  [
+
+                               ],
+        "productSalesChannels":  [
+
+                                 ],
+        "channelPrices":  [
+
+                          ],
+        "createdAt":  "2026-07-01T14:23:01.356Z",
+        "updatedAt":  "2026-07-01T14:23:01.356Z"
+    },
+    {
+        "id":  601,
+        "brandId":  1,
+        "name":  "Special Delight Burger",
+        "description":  "Premium beef patty with special sauce, fresh vegetables, and cheese on a toasted bun.",
+        "basePrice":  "2800",
+        "slug":  "special-delight-burger",
+        "imageUrl":  "/product-image.jpg",
+        "categoryId":  3,
+        "categoryIds":  [
+                            3
+                        ],
+        "outletIds":  [
+                          9
+                      ],
+        "isActive":  true,
+        "isPopular":  true,
+        "sortOrder":  3,
+        "preparationTime":  15,
+        "orderAvailabilityMode":  "both",
+        "preorderLeadTimeHours":  null,
+        "bulkServingOptions":  [
+
+                               ],
+        "productSalesChannels":  [
+
+                                 ],
+        "channelPrices":  [
+
+                          ],
+        "createdAt":  "2026-07-01T14:23:01.356Z",
+        "updatedAt":  "2026-07-01T14:23:01.356Z"
+    }
+]

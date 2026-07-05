@@ -1,0 +1,54 @@
+{
+  "popularItemsSortBy": {
+    "sortBy": "default"
+  },
+  "homepageLayout": {
+    "layout": "categories"
+  },
+  "referralRewardAmount": {
+    "amountInNaira": 500
+  },
+  "payoutCap": {
+    "valueNaira": 0
+  },
+  "chowdeck": {
+    "enabled": false
+  },
+  "paystackWebhook": {
+    "publicBaseUrl": "",
+    "liveWebhookUrl": "",
+    "forwardUrl": "",
+    "payoutAliasUrl": "",
+    "legacyPayoutAliasUrl": "",
+    "defaults": {
+      "publicBaseUrl": "",
+      "liveWebhookUrl": "",
+      "forwardUrl": ""
+    },
+    "config": {
+      "publicBaseUrlOverride": "",
+      "liveWebhookUrlOverride": "",
+      "forwardUrlOverride": ""
+    }
+  },
+  "salesChannels": {
+    "channels": [
+      {
+        "value": "web",
+        "label": "Website",
+        "isActive": true,
+        "sortOrder": 0
+      },
+      {
+        "value": "mobile",
+        "label": "Mobile App",
+        "isActive": true,
+        "sortOrder": 1
+      }
+    ]
+  },
+  "notificationPreferences": {
+    "soundEnabled": true,
+    "desktopEnabled": true
+  }
+}

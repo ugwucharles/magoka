@@ -1,16 +1,31 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 const db = require('../db');
 const authMiddleware = require('../middleware/auth');
 
 const router = express.Router();
 
-// Memory store for OTPs (identifier -> otp)
-const otpStore = new Map();
-
-// Helper to sign JWT
 const signToken = (user) => {
     return jwt.sign({ id: user.id }, process.env.JWT_SECRET || 'magoka_super_secret_key_12345', { expiresIn: '30d' });
+};
+
+const formatUser = (user) => {
+    const { passwordHash, ...safeUser } = user;
+    return {
+        ...safeUser,
+        emailVerified: true,
+        phoneVerified: !!user.phone
+    };
+};
+
+const findUserByIdentifier = (identifier) => {
+    const trimmed = identifier.trim();
+    const normalized = trimmed.toLowerCase();
+    return db.users.find(u =>
+        (u.email && u.email.toLowerCase() === normalized) ||
+        (u.phone && u.phone === trimmed)
+    );
 };
 
 // POST /api/auth/check-user
@@ -20,142 +35,223 @@ router.post('/auth/check-user', (req, res) => {
         return res.status(400).json({ message: 'Identifier is required' });
     }
 
-    const user = db.users.find(u => u.email === identifier || u.phone === identifier);
+    const user = findUserByIdentifier(identifier);
     if (user) {
-        return res.json({ exists: true, user });
+        return res.json({ exists: true, user: formatUser(user) });
     }
     return res.json({ exists: false, user: null });
 });
 
-// POST /api/auth/login/send-otp
+// POST /api/auth/login/send-otp — instant login (no OTP verification)
 router.post('/auth/login/send-otp', (req, res) => {
-    const { emailOrPhone } = req.body;
+    const { emailOrPhone, password } = req.body;
     if (!emailOrPhone) {
         return res.status(400).json({ message: 'Email or phone number is required' });
     }
 
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    otpStore.set(emailOrPhone, otp);
+    const trimmed = emailOrPhone.trim();
+    const isEmail = trimmed.includes('@');
+    const identifier = isEmail ? trimmed.toLowerCase() : trimmed;
 
-    console.log(`\n========================================`);
-    console.log(`🔑 LOGIN OTP for ${emailOrPhone}: ${otp}`);
-    console.log(`========================================\n`);
+    let user = findUserByIdentifier(identifier);
 
-    const isEmail = emailOrPhone.includes('@');
-    return res.json({
-        message: `OTP sent successfully to ${emailOrPhone}`,
-        method: isEmail ? 'email' : 'sms',
-        identifier: emailOrPhone
-    });
-});
-
-// POST /api/auth/login/verify
-router.post('/auth/login/verify', (req, res) => {
-    const { emailOrPhone, otp } = req.body;
-    if (!emailOrPhone || !otp) {
-        return res.status(400).json({ message: 'Email or phone and OTP are required' });
-    }
-
-    const savedOtp = otpStore.get(emailOrPhone);
-    // Allow '123456' as a universal testing OTP in addition to the generated one
-    if (otp !== '123456' && otp !== savedOtp) {
-        return res.status(400).json({ message: 'Invalid OTP code' });
-    }
-
-    otpStore.delete(emailOrPhone); // Clear OTP
-
-    // Find or create user
-    let user = db.users.find(u => u.email === emailOrPhone || u.phone === emailOrPhone);
     if (!user) {
-        // Auto-register if user doesn't exist
-        const isEmail = emailOrPhone.includes('@');
-        user = db.users.insert({
-            email: isEmail ? emailOrPhone : '',
-            phone: !isEmail ? emailOrPhone : '',
-            fullName: emailOrPhone.split('@')[0],
-            points: 100, // Welcome points
-            balance: 0
-        });
+        if (isEmail) {
+            if (!password) {
+                return res.status(400).json({ message: 'Password is required' });
+            }
+            user = db.users.insert({
+                email: identifier,
+                phone: '',
+                fullName: identifier.split('@')[0],
+                emailVerified: true,
+                phoneVerified: false,
+                passwordHash: bcrypt.hashSync(password, 10),
+                points: 100,
+                balance: 0
+            });
+        } else {
+            return res.status(404).json({ message: 'No account found. Please sign up with your email first.' });
+        }
+    }
+
+    if (isEmail) {
+        if (!password) {
+            return res.status(400).json({ message: 'Password is required' });
+        }
+        if (user.passwordHash && !bcrypt.compareSync(password, user.passwordHash)) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+        if (!user.passwordHash) {
+            user = db.users.update(user.id, { passwordHash: bcrypt.hashSync(password, 10) }) || user;
+        }
     }
 
     const token = signToken(user);
-    return res.json({ token, user });
-});
-
-// POST /api/auth/register/send-otp
-router.post('/auth/register/send-otp', (req, res) => {
-    const { email, phone, fullName } = req.body;
-    if (!email || !phone) {
-        return res.status(400).json({ message: 'Email and phone are required' });
-    }
-
-    const otp = Math.floor(100000 + Math.random() * 900000).toString();
-    otpStore.set(email, otp);
-    otpStore.set(phone, otp);
-
-    console.log(`\n========================================`);
-    console.log(`🔑 REGISTRATION OTP for ${fullName} (${email} / ${phone}): ${otp}`);
-    console.log(`========================================\n`);
-
     return res.json({
-        message: `OTP sent successfully to your phone/email`,
-        identifier: email
+        message: 'Login successful',
+        method: isEmail ? 'email' : 'sms',
+        identifier,
+        token,
+        user: formatUser(user)
     });
 });
 
-// POST /api/auth/register/verify
+// POST /api/auth/login/verify — kept for backwards compatibility, skips OTP
+router.post('/auth/login/verify', (req, res) => {
+    const { emailOrPhone } = req.body;
+    if (!emailOrPhone) {
+        return res.status(400).json({ message: 'Email or phone is required' });
+    }
+
+    const trimmed = emailOrPhone.trim();
+    const isEmail = trimmed.includes('@');
+    const identifier = isEmail ? trimmed.toLowerCase() : trimmed;
+
+    let user = findUserByIdentifier(identifier);
+    if (!user) {
+        if (isEmail) {
+            user = db.users.insert({
+                email: identifier,
+                phone: '',
+                fullName: identifier.split('@')[0],
+                emailVerified: true,
+                phoneVerified: false,
+                points: 100,
+                balance: 0
+            });
+        } else {
+            return res.status(404).json({ message: 'No account found. Please sign up first.' });
+        }
+    }
+
+    const token = signToken(user);
+    return res.json({ token, user: formatUser(user) });
+});
+
+// POST /api/auth/register/send-otp — instant signup (no OTP verification)
+router.post('/auth/register/send-otp', (req, res) => {
+    const { email, phone, fullName, referralCode, password } = req.body;
+    if (!email || !fullName || !password) {
+        return res.status(400).json({ message: 'Email, full name, and password are required' });
+    }
+
+    const normalizedEmail = email.trim().toLowerCase();
+    const normalizedPhone = phone ? phone.trim() : '';
+
+    const existing = db.users.find(u =>
+        u.email === normalizedEmail || (normalizedPhone && u.phone === normalizedPhone)
+    );
+    if (existing) {
+        if (existing.passwordHash && !bcrypt.compareSync(password, existing.passwordHash)) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+        if (!existing.passwordHash) {
+            db.users.update(existing.id, { passwordHash: bcrypt.hashSync(password, 10) });
+        }
+        const token = signToken(existing);
+        return res.json({
+            message: 'Account already exists — logged you in',
+            identifier: normalizedEmail,
+            token,
+            user: formatUser(existing)
+        });
+    }
+
+    const user = db.users.insert({
+        email: normalizedEmail,
+        phone: normalizedPhone,
+        fullName: fullName.trim(),
+        emailVerified: true,
+        phoneVerified: !!normalizedPhone,
+        referralCode: referralCode || null,
+        passwordHash: bcrypt.hashSync(password, 10),
+        points: 200,
+        balance: 0
+    });
+
+    const token = signToken(user);
+    return res.json({
+        message: 'Account created successfully',
+        identifier: normalizedEmail,
+        token,
+        user: formatUser(user)
+    });
+});
+
+// POST /api/auth/register/verify — kept for backwards compatibility, skips OTP
 router.post('/auth/register/verify', (req, res) => {
-    const { email, phone, fullName, otp } = req.body;
-    if (!email || !phone || !otp) {
-        return res.status(400).json({ message: 'Missing registration details or OTP' });
+    const { email, phone, fullName } = req.body;
+    if (!email || !fullName) {
+        return res.status(400).json({ message: 'Email and full name are required' });
     }
 
-    const savedOtp = otpStore.get(email) || otpStore.get(phone);
-    if (otp !== '123456' && otp !== savedOtp) {
-        return res.status(400).json({ message: 'Invalid OTP code' });
-    }
+    const normalizedEmail = email.trim().toLowerCase();
+    const normalizedPhone = phone ? phone.trim() : '';
 
-    otpStore.delete(email);
-    otpStore.delete(phone);
-
-    // Check if user already exists
-    let user = db.users.find(u => u.email === email || u.phone === phone);
+    let user = db.users.find(u => u.email === normalizedEmail || (normalizedPhone && u.phone === normalizedPhone));
     if (!user) {
         user = db.users.insert({
-            email,
-            phone,
-            fullName,
-            points: 200, // Welcome bonus points
+            email: normalizedEmail,
+            phone: normalizedPhone,
+            fullName: fullName.trim(),
+            emailVerified: true,
+            phoneVerified: !!normalizedPhone,
+            points: 200,
             balance: 0
         });
     } else {
-        // Update user fields
-        user = db.users.update(user.id, { email, phone, fullName });
+        user = db.users.update(user.id, {
+            email: normalizedEmail,
+            phone: normalizedPhone,
+            fullName: fullName.trim(),
+            emailVerified: true,
+            phoneVerified: !!normalizedPhone
+        });
     }
 
     const token = signToken(user);
-    return res.json({ token, user });
+    return res.json({ token, user: formatUser(user) });
 });
 
 // GET /api/auth/me
 router.get('/auth/me', authMiddleware, (req, res) => {
-    return res.json(req.user);
+    return res.json(formatUser(req.user));
 });
 
 // POST /api/auth/google
 router.post('/auth/google', (req, res) => {
-    const { credential, referralCode } = req.body;
-    
-    // Mock decode Google payload
-    const mockEmail = `google_user_${Math.floor(1000 + Math.random() * 9000)}@gmail.com`;
-    
-    let user = db.users.find(u => u.email === mockEmail);
+    const { credential } = req.body;
+
+    let email = '';
+    let name = 'Google User';
+    let picture = '';
+
+    if (credential) {
+        try {
+            const payload = JSON.parse(Buffer.from(credential.split('.')[1], 'base64').toString());
+            email = (payload.email || '').toLowerCase();
+            name = payload.name || payload.given_name || 'Google User';
+            picture = payload.picture || '';
+        } catch (e) {
+            return res.status(400).json({ message: 'Invalid Google credential' });
+        }
+    }
+
+    if (!email) {
+        return res.status(400).json({ message: 'Google account did not provide an email address' });
+    }
+
+    let user = db.users.find(u => u.email === email);
     let isNewUser = false;
     if (!user) {
         user = db.users.insert({
-            email: mockEmail,
+            email,
             phone: '',
-            fullName: 'Google User',
+            fullName: name,
+            avatarUrl: picture,
+            emailVerified: true,
+            phoneVerified: false,
             points: 150,
             balance: 0
         });
@@ -165,7 +261,7 @@ router.post('/auth/google', (req, res) => {
     const token = signToken(user);
     return res.json({
         token,
-        user,
+        user: formatUser(user),
         isNewUser,
         requiresProfileCompletion: !user.phone,
         missingFields: !user.phone ? ['phone'] : []
@@ -175,8 +271,7 @@ router.post('/auth/google', (req, res) => {
 // PUT /api/profile
 router.put('/profile', authMiddleware, (req, res) => {
     const updates = req.body;
-    
-    // Protect read-only or sensitive properties from arbitrary updates
+
     delete updates.id;
     delete updates.points;
     delete updates.balance;
@@ -187,10 +282,9 @@ router.put('/profile', authMiddleware, (req, res) => {
         return res.status(404).json({ message: 'User not found' });
     }
 
-    // Return the updated user and a newly signed token just in case the client needs it
     const token = signToken(updatedUser);
     return res.json({
-        ...updatedUser,
+        ...formatUser(updatedUser),
         token
     });
 });

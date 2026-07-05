@@ -1,0 +1,63 @@
+[
+  {
+    "id": "mr2po6s4n0b1r",
+    "createdAt": "2026-07-01T23:33:04.468Z",
+    "points": 100,
+    "balance": 0,
+    "email": "test@example.com",
+    "phone": "",
+    "fullName": "test",
+    "emailVerified": true,
+    "phoneVerified": false,
+    "referralCode": "MGK4N0B1R",
+    "updatedAt": "2026-07-02T00:29:25.975Z"
+  },
+  {
+    "id": "mr2po6up2qj47",
+    "createdAt": "2026-07-01T23:33:04.561Z",
+    "points": 200,
+    "balance": 0,
+    "email": "newuser@test.com",
+    "phone": "",
+    "fullName": "Test User",
+    "emailVerified": true,
+    "phoneVerified": false,
+    "referralCode": null
+  },
+  {
+    "id": "mr2poowqirr27",
+    "createdAt": "2026-07-01T23:33:27.962Z",
+    "points": 100,
+    "balance": 0,
+    "email": "verify@test.com",
+    "phone": "",
+    "fullName": "verify",
+    "emailVerified": true,
+    "phoneVerified": false
+  },
+  {
+    "id": "mr2pqbkrorx6r",
+    "createdAt": "2026-07-01T23:34:43.995Z",
+    "points": 200,
+    "balance": 0,
+    "email": "cjnr598@gmail.com",
+    "phone": "09153375313",
+    "fullName": "ugwu charles",
+    "emailVerified": true,
+    "phoneVerified": true,
+    "referralCode": null
+  },
+  {
+    "id": "mr2rtyxj6506u",
+    "createdAt": "2026-07-02T00:33:33.463Z",
+    "points": 1510,
+    "balance": 0,
+    "email": "hello@gmail.com",
+    "phone": "76608708",
+    "fullName": "hello",
+    "emailVerified": true,
+    "phoneVerified": true,
+    "referralCode": "MGKJ6506U",
+    "updatedAt": "2026-07-03T08:26:33.644Z"
+  }
+]

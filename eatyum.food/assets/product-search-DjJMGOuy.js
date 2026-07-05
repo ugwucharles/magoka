@@ -1407,7 +1407,11 @@ const vr = ({
           })]
         }), t.jsxs("div", {
           className: "flex-1 overflow-y-auto p-4",
-          children: [e.description && t.jsx("p", {
+          children: [(e.imageUrl || e.image) && t.jsx("img", {
+            src: e.imageUrl || e.image,
+            alt: e.name,
+            className: "w-full aspect-[4/3] object-cover rounded-lg mb-4 bg-gray-100"
+          }), e.description && t.jsx("p", {
             className: "text-gray-600 mb-6",
             children: e.description
           }), F ? t.jsxs("div", {
@@ -1622,7 +1626,7 @@ function Or({
 }) {
   const [r, n] = s.useState(""), [o, a] = s.useState(""), [d, m] = s.useState(false), [f, v] = s.useState(null), y = s.useRef(null), x = s.useRef(null), {
     data: l
-  } = Ae(), h = (l == null ? void 0 : l.colorScheme) || "#F02819", j = (l == null ? void 0 : l.buttonColor) || "#FFFFFF", M = (l == null ? void 0 : l.name) || "EatYum";
+  } = Ae(), h = (l == null ? void 0 : l.colorScheme) || "#F02819", j = (l == null ? void 0 : l.buttonColor) || "#FFFFFF", M = (l == null ? void 0 : l.name) || "magoka";
   s.useEffect(() => {
     const p = setTimeout(() => {
       a(r);
@@ -1701,9 +1705,9 @@ function Or({
             n(p.target.value), m(true);
           },
           onFocus: () => m(true),
-          className: "w-full pl-10 pr-10 py-2.5 border-2 border-gray-200 rounded-lg focus:outline-none focus:border-opacity-50 transition-colors",
+          className: "w-full pl-10 pr-10 py-2.5 border-2 rounded-lg focus:outline-none transition-colors",
           style: {
-            borderColor: d ? h : void 0
+            borderColor: d ? h : "rgba(0,0,0,0.5)"
           }
         }), r && t.jsx("button", {
           onClick: T,

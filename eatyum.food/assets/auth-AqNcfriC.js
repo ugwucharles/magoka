@@ -195,7 +195,9 @@ const O = () => {
         success: true,
         message: s.message,
         method: s.method,
-        identifier: s.identifier
+        identifier: s.identifier,
+        token: s.token,
+        user: s.user
       } : {
         success: false,
         error: s.message || "Failed to send OTP"
@@ -250,7 +252,9 @@ const O = () => {
       return r.ok ? {
         success: true,
         message: o.message,
-        identifier: o.email
+        identifier: o.email,
+        token: o.token,
+        user: o.user
       } : {
         success: false,
         error: o.message || "Failed to send OTP"

@@ -1,0 +1,27 @@
+[
+  {
+    "id": 9,
+    "brandId": 1,
+    "name": "Main Outlet",
+    "address": "Akute, Lagos",
+    "physicalLocationKey": "akute lagos",
+    "latitude": "6.5244",
+    "longitude": "3.3792",
+    "email": "contact@magoka.food",
+    "phone": "+1234567890",
+    "openTime": "09:00",
+    "closeTime": "22:00",
+    "daysOpen": [
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+      "sunday"
+    ],
+    "isActive": true,
+    "isLegacy": false,
+    "deliveryRadius": 25
+  }
+]

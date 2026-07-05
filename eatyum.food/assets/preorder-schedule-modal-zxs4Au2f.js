@@ -488,7 +488,7 @@ function ft({
               }), (() => {
                 const s = "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[72px] h-[72px] rounded-full bg-white shadow-md border border-slate-100 flex items-center justify-center p-1.5 z-10 select-none transition-transform duration-200", r = e.jsx("div", {
                   className: "absolute -top-2.5 left-1/2 -translate-x-1/2 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[10px] border-b-white filter drop-shadow-[0_-1px_1px_rgba(0,0,0,0.06)]"
-                }), o = !h || h.name === "EatYum" ? e.jsxs("svg", {
+                }), o = !h || h.name === "magoka" ? e.jsxs("svg", {
                   viewBox: "0 0 37 37",
                   className: "w-[50px] h-[50px] select-none pointer-events-none",
                   fill: "none",
@@ -527,11 +527,11 @@ function ft({
                     })
                   })]
                 }) : e.jsx("img", {
-                  src: (h == null ? void 0 : h.logoUrl) || "/eatyum-logo.png",
+                  src: (h == null ? void 0 : h.logoUrl) || "/magoka-logo.png",
                   alt: `${(h == null ? void 0 : h.name) || "Brand"} Logo`,
                   className: "w-[50px] h-[50px] object-contain select-none pointer-events-none",
                   onError: (c) => {
-                    c.currentTarget.src = "/eatyum-logo.png";
+                    c.currentTarget.src = "/magoka-logo.png";
                   }
                 });
                 return he ? e.jsxs("button", {
@@ -747,7 +747,7 @@ function pt({
           className: "sticky top-0 z-10 flex items-center justify-between p-4 border-b bg-white",
           children: [e.jsx("h2", {
             className: "text-xl font-semibold text-gray-900",
-            children: "Schedule Your Pre-Order"
+            children: "Schedule Your Order"
           }), e.jsx("button", {
             onClick: y,
             className: "p-2 hover:bg-gray-100 rounded-full transition-colors",
@@ -776,7 +776,7 @@ function pt({
             className: "mb-5",
             children: [e.jsx("label", {
               className: "block text-sm font-medium text-gray-700 mb-2",
-              children: "Delivery Date"
+              children: "Pickup or Delivery Date"
             }), e.jsxs("div", {
               className: "relative",
               children: [e.jsx(rt, {
@@ -793,7 +793,7 @@ function pt({
             className: "mb-5",
             children: [e.jsx("label", {
               className: "block text-sm font-medium text-gray-700 mb-2",
-              children: "Delivery Time"
+              children: "Pickup or Delivery Time"
             }), e.jsxs("div", {
               className: "relative",
               children: [e.jsx(Ae, {

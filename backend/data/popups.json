@@ -1,1 +1,24 @@
-[]
+[
+  {
+    "title": "Test Popup",
+    "description": "",
+    "imageUrl": "/uploads/products/1783215958667-wzkiy3.png",
+    "linkRoute": "/spin-win",
+    "ctaLink": "/spin-win",
+    "ctaLabel": "",
+    "outletIds": [
+      "all"
+    ],
+    "outletId": "all",
+    "isActive": true,
+    "displayConfig": {
+      "position": "center",
+      "autoDismiss": true,
+      "dismissAfterSeconds": 10,
+      "displayStyle": "slide-in"
+    },
+    "updatedAt": "2026-07-05T01:46:01.045Z",
+    "id": "1782915817691",
+    "createdAt": "2026-07-01T14:23:37.691Z"
+  }
+]

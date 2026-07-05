@@ -230,7 +230,7 @@ self.addEventListener('push', (event) => {
     console.log('SW: Push notification received');
 
     let data = {
-        title: 'EatYum',
+        title: 'magoka',
         body: 'You have a new notification',
         icon: '/icon-192.svg',
         badge: '/icon-192.svg',
@@ -260,7 +260,7 @@ self.addEventListener('push', (event) => {
         badge: data.badge,
         image: data.image,
         data: data.data,
-        tag: data.tag || 'eatyum-notification',
+        tag: data.tag || 'magoka-notification',
         vibrate: [200, 100, 200],
         requireInteraction: true,
         actions: data.data ? .url ? [{

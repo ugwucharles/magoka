@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "MAGOKA",
+    "logoUrl": "/magoka-logo.png",
+    "logoLightUrl": "/magoka-logo.png",
+    "logoDarkUrl": "/magoka-logo.png",
+    "colorScheme": "#FFD700",
+    "buttonColor": "#FF6B00",
+    "playStoreUrl": "",
+    "appStoreUrl": "",
+    "supportEmail": "contact@magoka.food",
+    "domain": "magoka.food",
+    "isActive": true,
+    "isDefault": true,
+    "hasFreeDelivery": false,
+    "freeDeliveryMinAmount": "0.00",
+    "freeDeliveryTagColor": "#10B981"
+  }
+]

@@ -54,7 +54,7 @@ const $ = E("Navigation", [
   }]
 ]);
 function O() {
-  const l = "+23456789012", i = "Hi EatYum! I need help with my order.", d = () => {
+  const l = "+23456789012", i = "Hi magoka! I need help with my order.", d = () => {
     const r = encodeURIComponent(i), u = `https://wa.me/${l.replace("+", "")}?text=${r}`;
     window.open(u, "_blank");
   };

@@ -210,7 +210,7 @@ const we = ({
   } = Q(), {
     data: s
   } = B(), k = (s == null ? void 0 : s.colorScheme) || "#F02819", x = (s == null ? void 0 : s.buttonColor) || "#FFFFFF", R = n.useMemo(() => {
-    const m = !s || s.name === "EatYum" ? "/eatyum-logo.png" : "/logo.png", p = (s == null ? void 0 : s.logoLightUrl) || (s == null ? void 0 : s.logoDarkUrl) || (s == null ? void 0 : s.logoUrl) || m, g = (s == null ? void 0 : s.logoDarkUrl) || p;
+    const m = !s || s.name === "magoka" ? "/magoka-logo.png" : "/logo.png", p = (s == null ? void 0 : s.logoLightUrl) || (s == null ? void 0 : s.logoDarkUrl) || (s == null ? void 0 : s.logoUrl) || m, g = (s == null ? void 0 : s.logoDarkUrl) || p;
     return {
       light: p,
       dark: g
@@ -287,7 +287,7 @@ const we = ({
                         onClick: () => r(false),
                         children: [e.jsx(F, {
                           className: "w-4 h-4 mr-2"
-                        }), (s == null ? void 0 : s.name) || "EatYum", " Wallet"]
+                        }), (s == null ? void 0 : s.name) || "magoka", " Wallet"]
                       })
                     }), e.jsx(a, {
                       variant: "outline",
@@ -298,7 +298,7 @@ const we = ({
                         onClick: () => r(false),
                         children: [e.jsx(te, {
                           className: "w-4 h-4 mr-2"
-                        }), (s == null ? void 0 : s.name) || "EatYum", " Points"]
+                        }), (s == null ? void 0 : s.name) || "magoka", " Points"]
                       })
                     }), e.jsx(a, {
                       variant: "outline",
@@ -341,7 +341,7 @@ const we = ({
                     className: "pt-4 mt-4 border-t border-gray-200",
                     children: [e.jsxs("p", {
                       className: "text-sm font-medium text-gray-700 mb-3",
-                      children: ["Download the ", (s == null ? void 0 : s.name) || "EatYum", " App"]
+                      children: ["Download the ", (s == null ? void 0 : s.name) || "magoka", " App"]
                     }), e.jsxs("div", {
                       className: "space-y-2",
                       children: [(s == null ? void 0 : s.appStoreUrl) && e.jsx("a", {
@@ -374,7 +374,7 @@ const we = ({
               className: "flex items-center",
               children: e.jsx("img", {
                 src: R.light,
-                alt: `${(_a = s == null ? void 0 : s.name) != null ? _a : "EatYum"} Logo`,
+                alt: `${(_a = s == null ? void 0 : s.name) != null ? _a : "magoka"} Logo`,
                 className: "h-10"
               })
             })]
@@ -429,7 +429,7 @@ const we = ({
                     className: "flex items-center",
                     children: [e.jsx(F, {
                       className: "w-4 h-4 mr-2"
-                    }), (s == null ? void 0 : s.name) || "EatYum", " Wallet"]
+                    }), (s == null ? void 0 : s.name) || "magoka", " Wallet"]
                   })
                 }), e.jsx(u, {
                   asChild: true,
@@ -460,35 +460,6 @@ const we = ({
           className: "py-3 border-b border-gray-100",
           children: e.jsx(q, {
             outletId: t.selectedOutlet.id
-          })
-        }), e.jsx("div", {
-          className: "pb-3 border-b border-gray-100",
-          children: e.jsxs("div", {
-            className: "flex items-center justify-between",
-            children: [e.jsxs("div", {
-              className: "flex bg-gray-100 rounded-lg p-1",
-              children: [e.jsx(a, {
-                variant: "ghost",
-                size: "sm",
-                onClick: () => N("delivery"),
-                className: "text-xs px-3 py-1 hover:bg-gray-200",
-                style: y === "delivery" ? {
-                  backgroundColor: x,
-                  color: "#FFFFFF"
-                } : {},
-                children: "Delivery"
-              }), e.jsx(a, {
-                variant: "ghost",
-                size: "sm",
-                onClick: () => N("pickup"),
-                className: "text-xs px-3 py-1 hover:bg-gray-200",
-                style: y === "pickup" ? {
-                  backgroundColor: x,
-                  color: "#FFFFFF"
-                } : {},
-                children: "Pickup"
-              })]
-            })]
           })
         })]
       })
