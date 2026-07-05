@@ -1474,7 +1474,7 @@ function Ke({
 function Kt() {
   var _a, _b, _c, _d, _e2, _f, _g;
   var de, me;
-  const s = Ne(), [d] = pe(), [i, g] = n.useState(null), [y, f] = n.useState(false), [h, l] = n.useState(false), [t, u] = n.useState(null), [o, p] = n.useState(false), [M, v] = n.useState(false), {
+  const s = Ne(), [d] = pe(), [i, g] = n.useState(null), [y, f] = n.useState(false), [h, l] = n.useState(false), [t, u] = n.useState(null), [o, p] = n.useState(false), [M, v] = n.useState(false), [newsletterEmail, setNewsletterEmail] = n.useState(""), [newsletterSubscribed, setNewsletterSubscribed] = n.useState(false), {
     toast: S
   } = Q();
   Se();
@@ -1663,6 +1663,14 @@ function Kt() {
       title: "Delivery Scheduled",
       description: `Your order will be delivered on ${x} at ${j}`
     }));
+  }, handleNewsletterSubmit = (x) => {
+    x.preventDefault();
+    if (!newsletterEmail) return;
+    setNewsletterSubscribed(true);
+    S({
+      title: "Successfully Subscribed!",
+      description: "Check your email for your 10% discount code."
+    });
   };
   return e.jsxs("div", {
     className: "min-h-screen bg-gray-50",
@@ -1776,6 +1784,139 @@ function Kt() {
       onClose: () => v(false),
       onConfirm: J,
       userLocation: t
+    }), e.jsxs("section", {
+      className: "bg-white py-16 border-t border-gray-100",
+      children: [e.jsxs("div", {
+        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12",
+        children: [e.jsx("h2", {
+          className: "text-3xl font-extrabold text-gray-900 tracking-tight sm:text-4xl",
+          children: "How It Works"
+        }), e.jsx("p", {
+          className: "mt-4 max-w-2xl mx-auto text-base text-gray-500",
+          children: "Simple steps to get delicious food delivered right to your door."
+        })]
+      }), e.jsx("div", {
+        className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8",
+        children: e.jsxs("div", {
+          className: "grid grid-cols-1 gap-8 md:grid-cols-3",
+          children: [e.jsxs("div", {
+            className: "flex flex-col items-center text-center p-6 bg-gray-50 rounded-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-md group",
+            children: [e.jsx("div", {
+              className: "w-16 h-16 bg-red-50 text-[#F02819] rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6",
+              children: e.jsx("svg", {
+                className: "w-8 h-8",
+                fill: "none",
+                stroke: "currentColor",
+                strokeWidth: "2",
+                viewBox: "0 0 24 24",
+                children: e.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  d: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                })
+              })
+            }), e.jsx("h3", {
+              className: "text-lg font-bold text-gray-900 mb-2",
+              children: "1. Select Location"
+            }), e.jsx("p", {
+              className: "text-sm text-gray-500 max-w-xs",
+              children: "Tell us where you are to find the closest outlet serving your area."
+            })]
+          }), e.jsxs("div", {
+            className: "flex flex-col items-center text-center p-6 bg-gray-50 rounded-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-md group",
+            children: [e.jsx("div", {
+              className: "w-16 h-16 bg-red-50 text-[#F02819] rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6",
+              children: e.jsx("svg", {
+                className: "w-8 h-8",
+                fill: "none",
+                stroke: "currentColor",
+                strokeWidth: "2",
+                viewBox: "0 0 24 24",
+                children: e.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  d: "M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                })
+              })
+            }), e.jsx("h3", {
+              className: "text-lg font-bold text-gray-900 mb-2",
+              children: "2. Choose Your Feast"
+            }), e.jsx("p", {
+              className: "text-sm text-gray-500 max-w-xs",
+              children: "Browse our premium menu items, categories, and custom gift boxes."
+            })]
+          }), e.jsxs("div", {
+            className: "flex flex-col items-center text-center p-6 bg-gray-50 rounded-2xl transition-all duration-300 hover:-translate-y-2 hover:shadow-md group",
+            children: [e.jsx("div", {
+              className: "w-16 h-16 bg-red-50 text-[#F02819] rounded-full flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6",
+              children: e.jsx("svg", {
+                className: "w-8 h-8",
+                fill: "none",
+                stroke: "currentColor",
+                strokeWidth: "2",
+                viewBox: "0 0 24 24",
+                children: e.jsx("path", {
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round",
+                  d: "M13 10V3L4 14h7v7l9-11h-7z"
+                })
+              })
+            }), e.jsx("h3", {
+              className: "text-lg font-bold text-gray-900 mb-2",
+              children: "3. Swift Delivery"
+            }), e.jsx("p", {
+              className: "text-sm text-gray-500 max-w-xs",
+              children: "Sit back and relax as our riders bring your food piping hot to your doorstep."
+            })]
+          })]
+        })
+      })]
+    }), e.jsx("section", {
+      className: "bg-gray-50 py-16",
+      children: e.jsx("div", {
+        className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8",
+        children: e.jsxs("div", {
+          className: "relative overflow-hidden rounded-3xl bg-black text-white px-8 py-12 md:p-16 shadow-2xl",
+          children: [e.jsx("div", {
+            className: "absolute -left-16 -top-16 w-64 h-64 rounded-full bg-gradient-to-br from-[#F02819] to-transparent opacity-20 blur-2xl"
+          }), e.jsx("div", {
+            className: "absolute -right-16 -bottom-16 w-64 h-64 rounded-full bg-gradient-to-br from-[#F02819] to-transparent opacity-20 blur-2xl"
+          }), e.jsxs("div", {
+            className: "relative z-10 text-center max-w-2xl mx-auto",
+            children: [e.jsx("h2", {
+              className: "text-3xl font-extrabold sm:text-4xl tracking-tight mb-4",
+              children: "Join the Club & Get 10% Off"
+            }), e.jsx("p", {
+              className: "text-gray-300 text-sm sm:text-base mb-8",
+              children: "Subscribe to our newsletter for exclusive discounts, chef-special new arrivals, and secret promotions."
+            }), newsletterSubscribed ? e.jsxs("div", {
+              className: "p-4 bg-white/10 rounded-2xl border border-white/20",
+              children: [e.jsx("h4", {
+                className: "text-lg font-bold text-white mb-1",
+                children: "\uD83C\uDF89 Welcome to the Club!"
+              }), e.jsx("p", {
+                className: "text-sm text-gray-300",
+                children: "Use code WELCOME10 at checkout for 10% off your first order."
+              })]
+            }) : e.jsxs("form", {
+              onSubmit: handleNewsletterSubmit,
+              className: "flex flex-col sm:flex-row gap-3 max-w-md mx-auto",
+              children: [e.jsx("input", {
+                type: "email",
+                required: true,
+                placeholder: "Enter your email address",
+                value: newsletterEmail,
+                onChange: (x) => setNewsletterEmail(x.target.value),
+                className: "w-full px-5 py-3.5 bg-white/10 border border-white/20 rounded-full text-white placeholder-gray-400 focus:outline-none focus:border-white focus:ring-1 focus:ring-white transition-all text-sm"
+              }), e.jsx("button", {
+                type: "submit",
+                className: "px-6 py-3.5 bg-[#F02819] hover:bg-[#d92416] text-white font-medium rounded-full transition-all duration-200 transform hover:scale-105 active:scale-95 text-sm whitespace-nowrap",
+                children: "Subscribe"
+              })]
+            })]
+          })]
+        })
+      })
     }), e.jsx("footer", {
       className: "bg-black text-gray-400 py-16 mt-16",
       children: e.jsxs("div", {
