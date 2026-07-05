@@ -140,8 +140,7 @@ router.post('/admin/categories', adminAuthMiddleware, (req, res) => {
         isActive: req.body.isActive !== false
     };
     categories.push(category);
-    const filePath = path.join(catalogStore.FRONTEND_DIR, 'api', 'categories');
-    fs.writeFileSync(filePath, JSON.stringify(categories, null, 2));
+    catalogStore.saveCategories(categories);
     return res.json(category);
 });
 
@@ -150,8 +149,7 @@ router.put('/admin/categories/:id', adminAuthMiddleware, (req, res) => {
     const index = categories.findIndex((c) => String(c.id) === String(req.params.id));
     if (index === -1) return res.status(404).json({ message: 'Category not found' });
     categories[index] = { ...categories[index], ...req.body, id: categories[index].id };
-    const filePath = path.join(catalogStore.FRONTEND_DIR, 'api', 'categories');
-    fs.writeFileSync(filePath, JSON.stringify(categories, null, 2));
+    catalogStore.saveCategories(categories);
     return res.json(categories[index]);
 });
 
@@ -160,8 +158,7 @@ router.delete('/admin/categories/:id', adminAuthMiddleware, (req, res) => {
     const index = categories.findIndex((c) => String(c.id) === String(req.params.id));
     if (index === -1) return res.status(404).json({ message: 'Category not found' });
     categories.splice(index, 1);
-    const filePath = path.join(catalogStore.FRONTEND_DIR, 'api', 'categories');
-    fs.writeFileSync(filePath, JSON.stringify(categories, null, 2));
+    catalogStore.saveCategories(categories);
     return res.json({ message: 'Category deleted successfully' });
 });
 

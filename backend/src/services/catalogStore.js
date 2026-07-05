@@ -260,6 +260,10 @@ const catalogStore = {
         return loadJson('categories.json', loadFrontendApiFile('categories', []));
     },
 
+    saveCategories(categories) {
+        saveJson('categories.json', categories);
+    },
+
     getPublicProducts(filters = {}) {
         let products = this.loadProducts().filter((p) => p.isActive !== false);
         if (filters.brandId) {
