@@ -23,6 +23,10 @@
       "dest": "/eatyum.food/magoka-logo.png"
     },
     {
+      "src": "/assets/(.*)",
+      "dest": "/eatyum.food/assets/$1"
+    },
+    {
       "src": "/api/(.*)",
       "dest": "https://magoka-backend.vercel.app/api/$1"
     },
