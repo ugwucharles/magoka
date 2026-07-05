@@ -1,0 +1,37 @@
+{
+  "version": 2,
+  "public": "eatyum.food",
+  "routes": [
+    {
+      "src": "/sw.js",
+      "dest": "/eatyum.food/sw.js"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/eatyum.food/manifest.json"
+    },
+    {
+      "src": "/icon-192.png",
+      "dest": "/eatyum.food/icon-192.png"
+    },
+    {
+      "src": "/icon-512.png",
+      "dest": "/eatyum.food/icon-512.png"
+    },
+    {
+      "src": "/magoka-logo.png",
+      "dest": "/eatyum.food/magoka-logo.png"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "https://magoka-backend.vercel.app/api/$1"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/eatyum.food/index.html"
+    }
+  ]
+}
