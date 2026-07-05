@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const DATA_DIR = path.join(__dirname, '../../data');
-const FRONTEND_DIR = path.resolve(__dirname, '../../../magoka.food');
+const FRONTEND_DIR = path.resolve(__dirname, '../../../eatyum.food');
 
 const ensureDir = (dir) => {
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
