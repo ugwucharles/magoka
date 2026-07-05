@@ -1886,6 +1886,7 @@ function Kt() {
         className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8",
         children: e.jsxs("div", {
           className: "relative overflow-hidden rounded-3xl bg-black text-white px-8 py-12 md:p-16 shadow-2xl",
+          style: { transform: newsletterInView ? "scale(1)" : "scale(0.08)", transition: "transform 1.2s cubic-bezier(0.34,1.56,0.64,1)", transformOrigin: "center" },
           children: [e.jsx("div", {
             className: "absolute -left-16 -top-16 w-64 h-64 rounded-full bg-gradient-to-br from-[#F02819] to-transparent opacity-20 blur-2xl",
             style: { transform: newsletterInView ? "scale(1)" : "scale(0.04)", transition: "transform 1.4s cubic-bezier(0.34,1.56,0.64,1)", transformOrigin: "center" }
