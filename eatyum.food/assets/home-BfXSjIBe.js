@@ -1474,7 +1474,7 @@ function Ke({
 function Kt() {
   var _a, _b, _c, _d, _e2, _f, _g;
   var de, me;
-  const s = Ne(), [d] = pe(), [i, g] = n.useState(null), [y, f] = n.useState(false), [h, l] = n.useState(false), [t, u] = n.useState(null), [o, p] = n.useState(false), [M, v] = n.useState(false), [newsletterEmail, setNewsletterEmail] = n.useState(""), [newsletterSubscribed, setNewsletterSubscribed] = n.useState(false), {
+  const s = Ne(), [d] = pe(), [i, g] = n.useState(null), [y, f] = n.useState(false), [h, l] = n.useState(false), [t, u] = n.useState(null), [o, p] = n.useState(false), [M, v] = n.useState(false), [newsletterEmail, setNewsletterEmail] = n.useState(""), [newsletterSubscribed, setNewsletterSubscribed] = n.useState(false), [newsletterInView, setNewsletterInView] = n.useState(false), newsletterRef = n.useRef(null), {
     toast: S
   } = Q();
   Se();
@@ -1530,6 +1530,14 @@ function Kt() {
       behavior: "smooth"
     });
   }, [i]);
+  n.useEffect(() => {
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setNewsletterInView(true); },
+      { threshold: 0.2 }
+    );
+    if (newsletterRef.current) obs.observe(newsletterRef.current);
+    return () => obs.disconnect();
+  }, []);
   const N = () => {
     l(true);
   };
@@ -1872,15 +1880,18 @@ function Kt() {
         })
       })]
     }), e.jsx("section", {
+      ref: newsletterRef,
       className: "bg-gray-50 py-16",
       children: e.jsx("div", {
         className: "max-w-4xl mx-auto px-4 sm:px-6 lg:px-8",
         children: e.jsxs("div", {
           className: "relative overflow-hidden rounded-3xl bg-black text-white px-8 py-12 md:p-16 shadow-2xl",
           children: [e.jsx("div", {
-            className: "absolute -left-16 -top-16 w-64 h-64 rounded-full bg-gradient-to-br from-[#F02819] to-transparent opacity-20 blur-2xl"
+            className: "absolute -left-16 -top-16 w-64 h-64 rounded-full bg-gradient-to-br from-[#F02819] to-transparent opacity-20 blur-2xl",
+            style: { transform: newsletterInView ? "scale(1)" : "scale(0.04)", transition: "transform 1.4s cubic-bezier(0.34,1.56,0.64,1)", transformOrigin: "center" }
           }), e.jsx("div", {
-            className: "absolute -right-16 -bottom-16 w-64 h-64 rounded-full bg-gradient-to-br from-[#F02819] to-transparent opacity-20 blur-2xl"
+            className: "absolute -right-16 -bottom-16 w-64 h-64 rounded-full bg-gradient-to-br from-[#F02819] to-transparent opacity-20 blur-2xl",
+            style: { transform: newsletterInView ? "scale(1)" : "scale(0.04)", transition: "transform 1.6s cubic-bezier(0.34,1.56,0.64,1) 0.2s", transformOrigin: "center" }
           }), e.jsxs("div", {
             className: "relative z-10 text-center max-w-2xl mx-auto",
             children: [e.jsx("h2", {
